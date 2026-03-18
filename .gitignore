@@ -1,0 +1,73 @@
+# 依赖
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 构建输出
+dist/
+build/
+.output/
+.cache/
+public/build/
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# PHP 相关
+vendor/
+composer.lock
+*.log
+
+# 临时文件
+.tmp/
+.temp/
+*.tmp
+*.temp
+
+# 测试覆盖
+coverage/
+.nyc_output/
+
+# 数据库
+*.sqlite
+*.db
+
+# 上传文件（用户上传的内容不应提交到仓库）
+uploads/
+public/uploads/
+storage/
+public/storage/
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 日志
+logs/
+*.log
+
+# 其他
+.cache/
+.parcel-cache/
+
+# 个人.gitignore配置

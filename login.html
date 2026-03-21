@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 - 人大匿名墙</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-left">
+      <div class="login-brand">
+        <img src="assets/ruc-logo.svg" alt="RUC Logo" onerror="this.style.display='none'">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:24px">
+          <circle cx="60" cy="60" r="58" stroke="white" stroke-width="4" fill="none"/>
+          <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="28" font-weight="900" font-family="Arial, sans-serif">RUC</text>
+          <text x="50%" y="72%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10" font-weight="600" font-family="Arial, sans-serif">RENMIN UNIVERSITY</text>
+        </svg>
+        <h1>人大匿名墙</h1>
+      </div>
+      <div class="login-features">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></></svg>
+          </div>
+          <span>完全匿名，放心表达真实情感</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span>仅限中国人民大学在校师生</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span>内容审核，保护隐私安全</span>
+        </div>
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-form-container">
+        <h2 class="form-title">欢迎回来</h2>
+        <p class="form-subtitle">登录到你的校园匿名墙账号</p>
+        <form class="login-form" id="loginForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="username">用户名</label>
+            <input type="text" id="username" name="username" class="form-input" placeholder="请输入用户名" autocomplete="username" required>
+            <p class="form-error" id="usernameError">请输入用户名</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="password">密码</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="请输入密码" autocomplete="current-password" required>
+            <p class="form-error" id="passwordError">请输入密码</p>
+          </div>
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" id="rememberMe" name="rememberMe">
+              <span>记住我</span>
+            </label>
+            <a href="#" class="forgot-link" id="forgotPassword">忘记密码？</a>
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">登录</button>
+          <p class="register-hint">
+            还没有账号？<a href="#" id="registerLink">立即注册</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module">
+    import apiClient from './js/api/client.js';
+
+    const form = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const submitBtn = document.getElementById('submitBtn');
+    const usernameError = document.getElementById('usernameError');
+    const passwordError = document.getElementById('passwordError');
+    const toastContainer = document.getElementById('toastContainer');
+
+    function showToast(message, type = 'default') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      toastContainer.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    function showError(input, errorEl, show) {
+      if (show) {
+        input.classList.add('error');
+        errorEl.classList.add('visible');
+      } else {
+        input.classList.remove('error');
+        errorEl.classList.remove('visible');
+      }
+    }
+
+    function validateForm() {
+      let valid = true;
+      if (!usernameInput.value.trim()) {
+        showError(usernameInput, usernameError, true);
+        valid = false;
+      } else {
+        showError(usernameInput, usernameError, false);
+      }
+      if (!passwordInput.value) {
+        showError(passwordInput, passwordError, true);
+        valid = false;
+      } else {
+        showError(passwordInput, passwordError, false);
+      }
+      return valid;
+    }
+
+    usernameInput.addEventListener('input', () => showError(usernameInput, usernameError, false));
+    passwordInput.addEventListener('input', () => showError(passwordInput, passwordError, false));
+
+    if (localStorage.getItem('rememberedUser')) {
+      usernameInput.value = localStorage.getItem('rememberedUser');
+      document.getElementById('rememberMe').checked = true;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validateForm()) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '登录中...';
+
+      try {
+        const result = await apiClient.login({
+          username: usernameInput.value.trim(),
+          password: passwordInput.value
+        });
+
+        if (result.code === 200 && result.data) {
+          const { token, user, expires_in } = result.data;
+          apiClient.setToken(token, localStorage.getItem('refresh_token') || token, expires_in);
+          apiClient.setUser(user);
+
+          if (document.getElementById('rememberMe').checked) {
+            localStorage.setItem('rememberedUser', usernameInput.value.trim());
+          } else {
+            localStorage.removeItem('rememberedUser');
+          }
+
+          showToast('登录成功！正在跳转...', 'success');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 800);
+        } else {
+          showToast(result.message || '登录失败，请检查用户名和密码', 'error');
+          showError(usernameInput, usernameError, true);
+          showError(passwordInput, passwordError, true);
+        }
+      } catch (error) {
+        showToast('网络错误，请稍后重试', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '登录';
+      }
+    });
+
+    document.getElementById('forgotPassword').addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast('请联系管理员重置密码', 'warning');
+    });
+
+    document.getElementById('registerLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast('注册功能暂未开放', 'warning');
+    });
+  </script>
+</body>
+</html>

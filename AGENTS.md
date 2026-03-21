@@ -13,14 +13,23 @@
 ## 目录结构
 
 ├── index.html          # 论坛/时间线主页
+
 ├── login.html          # 登录页面
+
 ├── css/
+
 │   └── style.css       # 全部样式
+
 ├── js/
+
 │   ├── api/
+
 │   │   └── client.js   # API 客户端封装（基于 Fetch，支持 Token 刷新）
+
 │   └── app.js          # (预留主应用逻辑文件)
+
 └── assets/
+
     └── ruc-logo.svg    # RUC 品牌 logo
 ```
 

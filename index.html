@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人大匿名墙 - 首页</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+</head>
+<body>
+  <div class="container">
+    <div class="main-layout">
+      <!-- Left Sidebar -->
+      <aside class="sidebar-left">
+        <div class="logo-area">
+          <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="25" cy="25" r="24" stroke="#9E1B32" stroke-width="2" fill="none"/>
+            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#9E1B32" font-size="14" font-weight="900" font-family="Arial, sans-serif">RUC</text>
+          </svg>
+          <span class="logo-text">人大匿名墙</span>
+        </div>
+        <nav class="nav-links">
+          <a href="#" class="nav-item active" id="navHome">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>首页</span>
+          </a>
+          <a href="#" class="nav-item" id="navExplore">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>发现</span>
+          </a>
+          <a href="#" class="nav-item" id="navNotifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span>通知</span>
+            <span class="notification-badge" id="notifBadge" style="display:none">0</span>
+          </a>
+          <a href="#" class="nav-item" id="navMessages">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>私信</span>
+          </a>
+          <a href="#" class="nav-item" id="navProfile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>我的发布</span>
+          </a>
+          <a href="#" class="nav-item" id="navSettings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>设置</span>
+          </a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="user-menu" id="userMenu">
+            <div class="avatar" id="userAvatar">?</div>
+            <div class="user-info">
+              <div class="user-name" id="userName">匿名用户</div>
+              <div class="user-handle" id="userHandle">@anonymous</div>
+            </div>
+            <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Feed -->
+      <main class="feed-main">
+        <header class="feed-header">
+          <h1>首页</h1>
+          <div class="top-sort">
+            <button class="active" data-sort="newest">最新</button>
+            <button data-sort="hot">热门</button>
+            <button data-sort="top">热评</button>
+          </div>
+        </header>
+
+        <!-- Compose Box -->
+        <div class="feed-compose">
+          <div class="compose-avatar" id="composeAvatar">?</div>
+          <div class="compose-body">
+            <textarea id="composeText" placeholder="有什么想说的？勇敢表达吧..." maxlength="500"></textarea>
+            <div class="compose-actions">
+              <div class="type-selector">
+                <button class="type-btn active" data-type="confession">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  表白
+                </button>
+                <button class="type-btn" data-type="secret">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  秘密
+                </button>
+                <button class="type-btn" data-type="question">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  提问
+                </button>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="char-count" id="charCount">0/500</span>
+                <button class="submit-btn" id="submitPost">发布</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-divider"></div>
+
+        <!-- Tweet List -->
+        <div id="feedContent">
+          <article class="tweet" data-id="1001">
+            <div class="tweet-main">
+              <div class="tweet-avatar">❤</div>
+              <div class="tweet-content">
+                <div class="tweet-header">
+                  <span class="tweet-author">匿名用户</span>
+                  <span class="tweet-time">3分钟前</span>
+                  <span class="tweet-type-badge confession">表白</span>
+                </div>
+                <p class="tweet-text">在图书馆四楼自习的时候，注意到对面那个穿灰色卫衣的男生。他看书的样子好认真，每天都坐在靠窗的位置。有没有同学知道他是谁啊？求帮忙捞一下！</p>
+                <div class="tweet-actions">
+                  <button class="tweet-action comment" data-action="comment" data-id="1001"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>12</span></button>
+                  <button class="tweet-action like" data-action="like" data-id="1001"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>86</span></button>
+                  <button class="tweet-action share" data-action="share" data-id="1001"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>分享</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="tweet" data-id="1002">
+            <div class="tweet-main">
+              <div class="tweet-avatar">👁</div>
+              <div class="tweet-content">
+                <div class="tweet-header">
+                  <span class="tweet-author">匿名用户</span>
+                  <span class="tweet-time">15分钟前</span>
+                  <span class="tweet-type-badge secret">秘密</span>
+                </div>
+                <p class="tweet-text">其实我每天最期待的事情就是去食堂吃饭，不是因为饿，是因为可以在高峰期偷偷看某个人一眼。虽然我们从来没说过话，但这样就够了。</p>
+                <div class="tweet-actions">
+                  <button class="tweet-action comment" data-action="comment" data-id="1002"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>8</span></button>
+                  <button class="tweet-action like liked" data-action="like" data-id="1002"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>52</span></button>
+                  <button class="tweet-action share" data-action="share" data-id="1002"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>分享</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="tweet" data-id="1003">
+            <div class="tweet-main">
+              <div class="tweet-avatar">?</div>
+              <div class="tweet-content">
+                <div class="tweet-header">
+                  <span class="tweet-author">匿名用户</span>
+                  <span class="tweet-time">1小时前</span>
+                  <span class="tweet-type-badge question">提问</span>
+                </div>
+                <p class="tweet-text">求问！下周要交期末大作业了，但完全没头绪，有没有商学院的学长学姐能分享一下经验？真的非常感谢🙏 最好是关于案例分析的</p>
+                <div class="tweet-actions">
+                  <button class="tweet-action comment" data-action="comment" data-id="1003"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>5</span></button>
+                  <button class="tweet-action like" data-action="like" data-id="1003"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>18</span></button>
+                  <button class="tweet-action share" data-action="share" data-id="1003"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>分享</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="tweet" data-id="1004">
+            <div class="tweet-main">
+              <div class="tweet-avatar">❤</div>
+              <div class="tweet-content">
+                <div class="tweet-header">
+                  <span class="tweet-author">匿名用户</span>
+                  <span class="tweet-time">2小时前</span>
+                  <span class="tweet-type-badge confession">表白</span>
+                </div>
+                <p class="tweet-text">终于鼓起勇气说出来了！想对明德楼那个总是坐在窗边看书的女生说，你认真写字的样子真的很美。希望下次能有机会认识你。</p>
+                <div class="tweet-actions">
+                  <button class="tweet-action comment" data-action="comment" data-id="1004"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>24</span></button>
+                  <button class="tweet-action like" data-action="like" data-id="1004"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>143</span></button>
+                  <button class="tweet-action share" data-action="share" data-id="1004"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>分享</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="tweet" data-id="1005">
+            <div class="tweet-main">
+              <div class="tweet-avatar">👁</div>
+              <div class="tweet-content">
+                <div class="tweet-header">
+                  <span class="tweet-author">匿名用户</span>
+                  <span class="tweet-time">3小时前</span>
+                  <span class="tweet-type-badge secret">秘密</span>
+                </div>
+                <p class="tweet-text">其实我已经在这面墙上看了很多条表白，发现大家都有喜欢的人，感觉自己格格不入。一个人也挺好的对吧？就是偶尔会有点孤单。</p>
+                <div class="tweet-actions">
+                  <button class="tweet-action comment" data-action="comment" data-id="1005"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>31</span></button>
+                  <button class="tweet-action like" data-action="like" data-id="1005"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>67</span></button>
+                  <button class="tweet-action share" data-action="share" data-id="1005"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>分享</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="tweet" data-id="1006">
+            <div class="tweet-main">
+              <div class="tweet-avatar">?</div>
+              <div class="tweet-content">
+                <div class="tweet-header">
+                  <span class="tweet-author">匿名用户</span>
+                  <span class="tweet-time">5小时前</span>
+                  <span class="tweet-type-badge question">提问</span>
+                </div>
+                <p class="tweet-text">有没有人知道足球场晚上几点关门啊？想约朋友去夜跑但不太确定时间。另外，人大附近还有什么适合晚上锻炼的地方吗？</p>
+                <div class="tweet-actions">
+                  <button class="tweet-action comment" data-action="comment" data-id="1006"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>3</span></button>
+                  <button class="tweet-action like" data-action="like" data-id="1006"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>9</span></button>
+                  <button class="tweet-action share" data-action="share" data-id="1006"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>分享</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="load-more" id="loadMoreArea" style="display:none">
+          <button id="loadMoreBtn">加载更多</button>
+        </div>
+      </main>
+
+      <!-- Right Sidebar -->
+      <aside class="sidebar-right">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" placeholder="搜索匿名墙...">
+        </div>
+
+        <div class="widget">
+          <div class="widget-header">社区规则</div>
+          <div class="widget-content">
+            <div class="rules-item">
+              <div class="rule-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="rule-text">
+                <div class="rule-title">禁止人身攻击</div>
+                <div class="rule-desc">请友善发言，拒绝网络暴力</div>
+              </div>
+            </div>
+            <div class="rules-item">
+              <div class="rule-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div class="rule-text">
+                <div class="rule-title">禁止虚假信息</div>
+                <div class="rule-desc">请勿散布未经证实的消息</div>
+              </div>
+            </div>
+            <div class="rules-item">
+              <div class="rule-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div class="rule-text">
+                <div class="rule-title">保护个人隐私</div>
+                <div class="rule-desc">请勿泄露他人隐私信息</div>
+              </div>
+            </div>
+            <div class="rules-item">
+              <div class="rule-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div class="rule-text">
+                <div class="rule-title">内容需审核</div>
+                <div class="rule-desc">发布内容需审核后展示</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget">
+          <div class="widget-header">热门话题</div>
+          <div class="widget-content">
+            <div class="trending-item">
+              <div class="trend-category">今日热议</div>
+              <div class="trend-topic">#期末复习#</div>
+              <div class="trend-count">328 条内容</div>
+            </div>
+            <div class="trending-item">
+              <div class="trend-category">校园生活</div>
+              <div class="trend-topic">#图书馆搭子#</div>
+              <div class="trend-count">156 条内容</div>
+            </div>
+            <div class="trending-item">
+              <div class="trend-category">情感树洞</div>
+              <div class="trend-topic">#暗恋心事#</div>
+              <div class="trend-count">89 条内容</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#">使用条款</a>
+          <a href="#">隐私政策</a>
+          <a href="#">联系我们</a>
+          <a href="#">帮助中心</a>
+          <span>© 2024 RUC Confession Wall</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Comment Modal -->
+  <div class="modal-overlay" id="commentModal">
+    <div class="modal comment-modal">
+      <div class="modal-header">
+        <h2>评论</h2>
+        <button class="modal-close" id="closeCommentModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="commentMessagePreview"></div>
+        <div class="comment-list" id="commentList">
+          <div class="loading-spinner"><div class="spinner"></div></div>
+        </div>
+      </div>
+      <div class="comment-compose">
+        <textarea id="commentInput" placeholder="写下你的评论..." maxlength="200"></textarea>
+        <button class="btn btn-primary" id="submitComment">发送</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Menu Modal -->
+  <div class="modal-overlay" id="userMenuModal">
+    <div class="modal" style="max-width:300px;padding:8px">
+      <div class="modal-header" style="padding:8px 12px">
+        <h2 style="font-size:15px">账号</h2>
+        <button class="modal-close" id="closeUserMenuModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" style="padding:8px">
+        <button class="btn btn-secondary" id="logoutBtn" style="width:100%;text-align:left;padding:12px 16px;border-radius:8px">
+          退出登录
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scroll to top -->
+  <button class="scroll-to-top" id="scrollToTop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+
+  <script type="module">
+    import apiClient from './js/api/client.js';
+
+    // State
+    let currentPage = 1;
+    let currentSort = 'newest';
+    let currentMessageId = null;
+    let isLoading = false;
+
+    // DOM Elements
+    const feedContent = document.getElementById('feedContent');
+    const loadMoreArea = document.getElementById('loadMoreArea');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const composeText = document.getElementById('composeText');
+    const charCount = document.getElementById('charCount');
+    const submitPost = document.getElementById('submitPost');
+    const typeBtns = document.querySelectorAll('.type-btn');
+    const sortBtns = document.querySelectorAll('.top-sort button');
+    const commentModal = document.getElementById('commentModal');
+    const commentList = document.getElementById('commentList');
+    const commentInput = document.getElementById('commentInput');
+    const submitComment = document.getElementById('submitComment');
+    const commentMessagePreview = document.getElementById('commentMessagePreview');
+    const userMenuModal = document.getElementById('userMenuModal');
+    const userMenu = document.getElementById('userMenu');
+    const toastContainer = document.getElementById('toastContainer');
+    const scrollToTop = document.getElementById('scrollToTop');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    // Check auth
+    const user = apiClient.getUser();
+    if (!apiClient.isLoggedIn()) {
+      window.location.href = 'login.html';
+    }
+
+    // Initialize user info
+    if (user) {
+      document.getElementById('userName').textContent = user.username || '匿名用户';
+      document.getElementById('userHandle').textContent = '@' + (user.username || 'anonymous');
+      const initial = (user.username || 'A')[0].toUpperCase();
+      document.getElementById('userAvatar').textContent = initial;
+      document.getElementById('composeAvatar').textContent = initial;
+    }
+
+    // Toast
+    function showToast(message, type = 'default') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      toastContainer.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Get type icon
+    function getTypeIcon(type) {
+      const icons = {
+        confession: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+        secret: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+        question: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+      };
+      return icons[type] || icons.confession;
+    }
+
+    function getTypeName(type) {
+      const names = { confession: '表白', secret: '秘密', question: '提问' };
+      return names[type] || '表白';
+    }
+
+    // Format time
+    function formatTime(dateStr) {
+      const date = new Date(dateStr);
+      const now = new Date();
+      const diff = (now - date) / 1000;
+      if (diff < 60) return '刚刚';
+      if (diff < 3600) return Math.floor(diff / 60) + '分钟前';
+      if (diff < 86400) return Math.floor(diff / 3600) + '小时前';
+      if (diff < 604800) return Math.floor(diff / 86400) + '天前';
+      return date.toLocaleDateString('zh-CN');
+    }
+
+    // Render tweet
+    function renderTweet(msg) {
+      const typeLabel = getTypeName(msg.type);
+      const typeIcon = getTypeIcon(msg.type);
+      const avatarChar = (msg.type === 'confession' ? '❤' : msg.type === 'secret' ? '👁' : '?')[0];
+
+      return `
+        <article class="tweet" data-id="${msg.id}">
+          <div class="tweet-main">
+            <div class="tweet-avatar">${avatarChar}</div>
+            <div class="tweet-content">
+              <div class="tweet-header">
+                <span class="tweet-author">匿名用户</span>
+                <span class="tweet-time">${formatTime(msg.created_at)}</span>
+                <span class="tweet-type-badge ${msg.type}">${typeIcon} ${typeLabel}</span>
+              </div>
+              <p class="tweet-text">${escapeHtml(msg.content)}</p>
+              <div class="tweet-actions">
+                <button class="tweet-action comment" data-action="comment" data-id="${msg.id}">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                  <span>${msg.comment_count || 0}</span>
+                </button>
+                <button class="tweet-action like ${msg.is_liked ? 'liked' : ''}" data-action="like" data-id="${msg.id}">
+                  <svg viewBox="0 0 24 24" fill="${msg.is_liked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>${msg.like_count || 0}</span>
+                </button>
+                <button class="tweet-action share" data-action="share" data-id="${msg.id}">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  <span>分享</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Load messages
+    async function loadMessages(page = 1, append = false) {
+      if (isLoading) return;
+      isLoading = true;
+
+      if (!append) {
+        feedContent.innerHTML = '';
+      }
+
+      try {
+        const result = await apiClient.getMessages({ page, limit: 20, sort: currentSort });
+
+        if (result.code === 200 && result.data) {
+          const { messages } = result.data;
+
+          if (!append) {
+            feedContent.innerHTML = '';
+          }
+
+          if (messages && messages.length > 0) {
+            feedContent.innerHTML += messages.map(renderTweet).join('');
+            loadMoreArea.style.display = messages.length === 20 ? 'block' : 'none';
+          } else if (!append) {
+            feedContent.innerHTML = `
+              <div class="empty-state">
+                <div class="empty-icon">📭</div>
+                <h3>暂无内容</h3>
+                <p>还没有人发布内容，来说点什么吧！</p>
+              </div>
+            `;
+            loadMoreArea.style.display = 'none';
+          }
+
+          attachTweetListeners();
+        } else {
+          if (!append) {
+            feedContent.innerHTML = `
+              <div class="empty-state">
+                <h3>加载失败</h3>
+                <p>${result.message || '请稍后重试'}</p>
+              </div>
+            `;
+          }
+        }
+      } catch (error) {
+        if (!append) {
+          feedContent.innerHTML = `
+            <div class="empty-state">
+              <h3>网络错误</h3>
+              <p>请检查网络连接后刷新页面</p>
+            </div>
+          `;
+        }
+        showToast('网络错误，请稍后重试', 'error');
+      } finally {
+        isLoading = false;
+      }
+    }
+
+    // Attach tweet action listeners
+    function attachTweetListeners() {
+      document.querySelectorAll('.tweet').forEach(tweet => {
+        const id = tweet.dataset.id;
+
+        tweet.querySelector('[data-action="like"]').addEventListener('click', async (e) => {
+          e.stopPropagation();
+          if (!apiClient.isLoggedIn()) {
+            showToast('请先登录', 'warning');
+            window.location.href = 'login.html';
+            return;
+          }
+          const btn = tweet.querySelector('.like');
+          const span = btn.querySelector('span');
+          const svg = btn.querySelector('svg');
+          const wasLiked = btn.classList.contains('liked');
+          const oldCount = parseInt(span.textContent) || 0;
+
+          btn.classList.toggle('liked');
+          svg.setAttribute('fill', wasLiked ? 'none' : 'currentColor');
+          span.textContent = wasLiked ? oldCount - 1 : oldCount + 1;
+
+          try {
+            const result = await apiClient.likeMessage(id);
+            if (result.code !== 200) {
+              btn.classList.toggle('liked');
+              svg.setAttribute('fill', wasLiked ? 'currentColor' : 'none');
+              span.textContent = oldCount;
+            }
+          } catch {
+            btn.classList.toggle('liked');
+            svg.setAttribute('fill', wasLiked ? 'currentColor' : 'none');
+            span.textContent = oldCount;
+          }
+        });
+
+        tweet.querySelector('[data-action="comment"]').addEventListener('click', async (e) => {
+          e.stopPropagation();
+          currentMessageId = id;
+          const content = tweet.querySelector('.tweet-text').textContent;
+          const type = tweet.querySelector('.tweet-type-badge').className.split(' ').find(c => ['confession', 'secret', 'question'].includes(c));
+          commentMessagePreview.innerHTML = `
+            <div style="padding:8px 0 16px;font-size:14px;color:var(--gray-500);border-bottom:1px solid var(--gray-200);margin-bottom:12px">
+              <span class="tweet-type-badge ${type}">${getTypeIcon(type)} ${getTypeName(type)}</span>
+              <span style="margin-left:8px">${escapeHtml(content.substring(0, 50))}${content.length > 50 ? '...' : ''}</span>
+            </div>
+          `;
+          commentList.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+          commentModal.classList.add('active');
+
+          try {
+            const result = await apiClient.getComments(id);
+            if (result.code === 200 && result.data && result.data.comments) {
+              if (result.data.comments.length > 0) {
+                commentList.innerHTML = result.data.comments.map(c => `
+                  <div class="comment-item">
+                    <div class="comment-author">热心同学</div>
+                    <div class="comment-content">${escapeHtml(c.content)}</div>
+                    <div class="comment-time">${formatTime(c.created_at)}</div>
+                  </div>
+                `).join('');
+              } else {
+                commentList.innerHTML = '<div style="padding:20px;text-align:center;color:var(--gray-400)">暂无评论，快来抢沙发！</div>';
+              }
+            }
+          } catch {
+            commentList.innerHTML = '<div style="padding:20px;text-align:center;color:var(--red)">加载评论失败</div>';
+          }
+        });
+
+        tweet.querySelector('[data-action="share"]').addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (navigator.share) {
+            navigator.share({ title: '人大匿名墙', text: '来看看这个有趣的内容！' });
+          } else {
+            navigator.clipboard.writeText(window.location.origin + '?msg=' + id);
+            showToast('链接已复制到剪贴板', 'success');
+          }
+        });
+      });
+    }
+
+    // Compose area
+    let selectedType = 'confession';
+    typeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedType = btn.dataset.type;
+      });
+    });
+
+    composeText.addEventListener('input', () => {
+      const len = composeText.value.length;
+      charCount.textContent = `${len}/500`;
+      charCount.className = 'char-count' + (len > 450 ? ' warning' : '') + (len >= 500 ? ' danger' : '');
+    });
+
+    submitPost.addEventListener('click', async () => {
+      const content = composeText.value.trim();
+      if (!content) {
+        showToast('请输入内容', 'warning');
+        return;
+      }
+      if (content.length > 500) {
+        showToast('内容过长，请控制在500字以内', 'warning');
+        return;
+      }
+
+      submitPost.disabled = true;
+      submitPost.textContent = '发布中...';
+
+      try {
+        const result = await apiClient.createMessage({
+          content,
+          type: selectedType,
+          is_anonymous: true
+        });
+
+        if (result.code === 201) {
+          composeText.value = '';
+          charCount.textContent = '0/500';
+          charCount.className = 'char-count';
+          currentPage = 1;
+          loadMessages(1, false);
+          showToast(result.message || '发布成功！', 'success');
+        } else {
+          showToast(result.message || '发布失败', 'error');
+        }
+      } catch {
+        showToast('网络错误，请稍后重试', 'error');
+      } finally {
+        submitPost.disabled = false;
+        submitPost.textContent = '发布';
+      }
+    });
+
+    // Sort
+    sortBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sortBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentSort = btn.dataset.sort;
+        currentPage = 1;
+        loadMessages(1, false);
+      });
+    });
+
+    // Load more
+    loadMoreBtn.addEventListener('click', () => {
+      currentPage++;
+      loadMessages(currentPage, true);
+    });
+
+    // Comment modal
+    document.getElementById('closeCommentModal').addEventListener('click', () => {
+      commentModal.classList.remove('active');
+      currentMessageId = null;
+    });
+
+    commentModal.addEventListener('click', (e) => {
+      if (e.target === commentModal) commentModal.classList.remove('active');
+    });
+
+    submitComment.addEventListener('click', async () => {
+      const content = commentInput.value.trim();
+      if (!content) {
+        showToast('请输入评论', 'warning');
+        return;
+      }
+      if (!currentMessageId) return;
+
+      submitComment.disabled = true;
+
+      try {
+        const result = await apiClient.createComment(currentMessageId, { content });
+        if (result.code === 201) {
+          commentInput.value = '';
+          const newComment = document.createElement('div');
+          newComment.className = 'comment-item';
+          newComment.innerHTML = `
+            <div class="comment-author">热心同学</div>
+            <div class="comment-content">${escapeHtml(content)}</div>
+            <div class="comment-time">刚刚</div>
+          `;
+          const emptyMsg = commentList.querySelector('div[style*="暂无评论"]');
+          if (emptyMsg) emptyMsg.remove();
+          commentList.appendChild(newComment);
+          showToast('评论成功！', 'success');
+
+          const tweet = document.querySelector(`.tweet[data-id="${currentMessageId}"]`);
+          if (tweet) {
+            const commentBtn = tweet.querySelector('.comment span');
+            const count = parseInt(commentBtn.textContent) || 0;
+            commentBtn.textContent = count + 1;
+          }
+        } else {
+          showToast(result.message || '评论失败', 'error');
+        }
+      } catch {
+        showToast('网络错误，请稍后重试', 'error');
+      } finally {
+        submitComment.disabled = false;
+      }
+    });
+
+    // User menu
+    userMenu.addEventListener('click', () => {
+      userMenuModal.classList.add('active');
+    });
+
+    document.getElementById('closeUserMenuModal').addEventListener('click', () => {
+      userMenuModal.classList.remove('active');
+    });
+
+    userMenuModal.addEventListener('click', (e) => {
+      if (e.target === userMenuModal) userMenuModal.classList.remove('active');
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await apiClient.logout();
+      showToast('已退出登录', 'success');
+      setTimeout(() => { window.location.href = 'login.html'; }, 800);
+    });
+
+    // Nav items
+    navItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        navItems.forEach(n => n.classList.remove('active'));
+        item.classList.add('active');
+        showToast('功能开发中，敬请期待', 'warning');
+      });
+    });
+
+    // Scroll to top
+    window.addEventListener('scroll', () => {
+      scrollToTop.classList.toggle('visible', window.scrollY > 300);
+    });
+
+    scrollToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Init
+    attachTweetListeners();
+    loadMessages(1, false);
+  </script>
+</body>
+</html>

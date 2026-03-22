@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>注册 - 人大匿名墙</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+</head>
+
+<body>
+	<div class="login-page">
+		<div class="login-left">
+			<div class="login-brand">
+				<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"
+					style="margin-bottom:24px">
+					<circle cx="60" cy="60" r="58" stroke="white" stroke-width="4" fill="none" />
+					<text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="28"
+						font-weight="900" font-family="Arial, sans-serif">RUC</text>
+					<text x="50%" y="62%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.8)"
+						font-size="10" font-weight="600" font-family="Arial, sans-serif">RENMIN UNIVERSITY</text>
+				</svg>
+				<h1>人大匿名墙</h1>
+			</div>
+			<div class="login-features">
+				<div class="feature-item">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path
+								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+						</svg>
+					</div>
+					<span>完全匿名，放心表达真实情感</span>
+				</div>
+				<div class="feature-item">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+							<circle cx="9" cy="7" r="4" />
+							<path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+							<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+						</svg>
+					</div>
+					<span>仅限中国人民大学在校师生</span>
+				</div>
+				<div class="feature-item">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+						</svg>
+					</div>
+					<span>内容审核，保护隐私安全</span>
+				</div>
+			</div>
+		</div>
+		<div class="login-right">
+			<div class="login-form-container">
+				<h2 class="form-title">创建账号</h2>
+				<p class="form-subtitle">加入人大匿名墙，开始你的匿名表达</p>
+				<form class="login-form" id="registerForm" novalidate>
+					<div class="form-group">
+						<label class="form-label" for="username">用户名</label>
+						<input type="text" id="username" name="username" class="form-input" placeholder="请输入用户名（3-50位）"
+							autocomplete="username" required>
+						<p class="form-error" id="usernameError">请输入用户名</p>
+					</div>
+					<div class="form-group">
+						<label class="form-label" for="email">邮箱（可选）</label>
+						<input type="email" id="email" name="email" class="form-input" placeholder="请输入邮箱地址"
+							autocomplete="email">
+						<p class="form-error" id="emailError">请输入有效的邮箱地址</p>
+					</div>
+					<div class="form-group">
+						<label class="form-label" for="password">密码</label>
+						<input type="password" id="password" name="password" class="form-input"
+							placeholder="请输入密码（6-64位）" autocomplete="new-password" required>
+						<p class="form-error" id="passwordError">请输入密码</p>
+					</div>
+					<div class="form-group">
+						<label class="form-label" for="confirmPassword">确认密码</label>
+						<input type="password" id="confirmPassword" name="confirmPassword" class="form-input"
+							placeholder="请再次输入密码" autocomplete="new-password" required>
+						<p class="form-error" id="confirmPasswordError">两次输入的密码不一致</p>
+					</div>
+					<button type="submit" class="submit-btn" id="submitBtn">注册</button>
+					<p class="register-hint">
+						已有账号？<a href="login.html">立即登录</a>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="toast-container" id="toastContainer"></div>
+
+	<script type="module">
+		import apiClient from './js/api/client.js';
+
+		const form = document.getElementById('registerForm');
+		const usernameInput = document.getElementById('username');
+		const emailInput = document.getElementById('email');
+		const passwordInput = document.getElementById('password');
+		const confirmPasswordInput = document.getElementById('confirmPassword');
+		const submitBtn = document.getElementById('submitBtn');
+		const usernameError = document.getElementById('usernameError');
+		const emailError = document.getElementById('emailError');
+		const passwordError = document.getElementById('passwordError');
+		const confirmPasswordError = document.getElementById('confirmPasswordError');
+		const toastContainer = document.getElementById('toastContainer');
+
+		function showToast(message, type = 'default') {
+			const toast = document.createElement('div');
+			toast.className = `toast ${type}`;
+			toast.textContent = message;
+			toastContainer.appendChild(toast);
+			setTimeout(() => toast.remove(), 3000);
+		}
+
+		function showError(input, errorEl, show) {
+			if (show) {
+				input.classList.add('error');
+				errorEl.classList.add('visible');
+			} else {
+				input.classList.remove('error');
+				errorEl.classList.remove('visible');
+			}
+		}
+
+		function validateForm() {
+			let valid = true;
+
+			// 用户名验证
+			const username = usernameInput.value.trim();
+			if (!username) {
+				showError(usernameInput, usernameError, true);
+				valid = false;
+			} else if (username.length < 3 || username.length > 50) {
+				showError(usernameInput, usernameError, true);
+				showToast('用户名长度需为3-50位', 'warning');
+				valid = false;
+			} else if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+				showError(usernameInput, usernameError, true);
+				showToast('用户名只能包含字母、数字、下划线', 'warning');
+				valid = false;
+			} else {
+				showError(usernameInput, usernameError, false);
+			}
+
+			// 邮箱验证（可选，但如果填写必须符合格式）
+			const email = emailInput.value.trim();
+			if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+				showError(emailInput, emailError, true);
+				showToast('请输入有效的邮箱地址', 'warning');
+				valid = false;
+			} else {
+				showError(emailInput, emailError, false);
+			}
+
+			// 密码验证
+			const password = passwordInput.value;
+			if (!password) {
+				showError(passwordInput, passwordError, true);
+				valid = false;
+			} else if (password.length < 6 || password.length > 64) {
+				showError(passwordInput, passwordError, true);
+				showToast('密码长度需为6-64位', 'warning');
+				valid = false;
+			} else {
+				showError(passwordInput, passwordError, false);
+			}
+
+			// 确认密码验证
+			const confirmPassword = confirmPasswordInput.value;
+			if (password !== confirmPassword) {
+				showError(confirmPasswordInput, confirmPasswordError, true);
+				showToast('两次输入的密码不一致', 'warning');
+				valid = false;
+			} else {
+				showError(confirmPasswordInput, confirmPasswordError, false);
+			}
+
+			return valid;
+		}
+
+		usernameInput.addEventListener('input', () => {
+			showError(usernameInput, usernameError, false);
+		});
+		emailInput.addEventListener('input', () => {
+			showError(emailInput, emailError, false);
+		});
+		passwordInput.addEventListener('input', () => {
+			showError(passwordInput, passwordError, false);
+		});
+		confirmPasswordInput.addEventListener('input', () => {
+			showError(confirmPasswordInput, confirmPasswordError, false);
+		});
+
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			if (!validateForm()) return;
+
+			submitBtn.disabled = true;
+			submitBtn.textContent = '注册中...';
+
+			try {
+				const result = await apiClient.register({
+					username: usernameInput.value.trim(),
+					password: passwordInput.value,
+					email: emailInput.value.trim() || undefined
+				});
+
+				if (result.code === 201 && result.data) {
+					showToast('注册成功！请登录', 'success');
+					setTimeout(() => {
+						window.location.href = 'login.html';
+					}, 1000);
+				} else {
+					showToast(result.message || '注册失败', 'error');
+					if (result.code === 400) {
+						showError(usernameInput, usernameError, true);
+					}
+				}
+			} catch (error) {
+				showToast('网络错误，请稍后重试', 'error');
+			} finally {
+				submitBtn.disabled = false;
+				submitBtn.textContent = '注册';
+			}
+		});
+	</script>
+</body>
+
+</html>

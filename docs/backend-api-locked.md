@@ -392,6 +392,51 @@ Authorization: Bearer {refresh_token}
 
 ---
 
+#### 4.3 用户注册
+
+**接口说明**: 注册新用户账号
+
+**请求地址**: `POST /api/auth/register`
+
+**认证要求**: 否
+
+**请求头**:
+```
+Content-Type: application/json
+```
+
+**请求参数**:
+
+| 参数名   | 类型   | 必填 | 说明   | 约束                                |
+| -------- | ------ | ---- | ------ | ----------------------------------- |
+| username | string | 是   | 用户名 | 3-50 字符，仅允许字母、数字、下划线 |
+| password | string | 是   | 密码   | 6-64 字符                           |
+| email    | string | 否   | 邮箱   | 有效的邮箱格式，可选                |
+
+**响应示例**:
+
+```json
+{
+  "code": 201,
+  "message": "注册成功",
+  "data": {
+    "user": {
+      "id": 5,
+      "username": "student_zhang",
+      "role": "user",
+      "created_at": "2024-01-15 10:30:00"
+    }
+  }
+}
+```
+
+**错误码**:
+- `2000`: 参数验证失败（用户名/密码不符合规则）
+- `2002`: 内容为空
+- `3002`: 用户名已存在
+
+---
+
 ### 5. 管理员接口（需要管理员权限）
 
 #### 5.1 审核消息
@@ -500,6 +545,7 @@ Content-Type: application/json
 | 2002   | 内容为空         | 提供有效内容           |
 | 3000   | Token 无效或过期 | 重新登录               |
 | 3001   | 权限不足         | 使用管理员账号         |
+| 3002   | 用户名已存在     | 更换用户名             |
 | 4000   | 资源不存在       | 检查 ID 是否正确       |
 | 5000   | 服务器内部错误   | 联系管理员             |
 
@@ -532,6 +578,17 @@ Content-Type: application/json
 | content    | text     | 评论内容             |
 | parent_id  | integer  | 父评论ID（支持回复） |
 | created_at | datetime | 创建时间             |
+
+### User（用户）
+
+| 字段名     | 类型     | 说明                    |
+| ---------- | -------- | ----------------------- |
+| id         | integer  | 主键，自增              |
+| username   | string   | 用户名（唯一）          |
+| password   | string   | 密码（bcrypt 加密存储） |
+| email      | string   | 邮箱（可选）            |
+| role       | enum     | 角色: user, admin       |
+| created_at | datetime | 创建时间                |
 
 ---
 
@@ -599,7 +656,7 @@ CREATE TABLE `likes` (
   KEY `idx_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 用户表（可选）
+-- 用户表（必需）
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
@@ -608,6 +665,18 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 密码重置令牌表（可选扩展）
+CREATE TABLE `password_resets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 

@@ -98,10 +98,17 @@ class APIClient {
   }
 
   async refreshToken() {
-    return this.request('/auth/refresh', { method: 'POST' });
-  }
+   return this.request('/auth/refresh', { method: 'POST' });
+ }
 
-  // Message endpoints
+ async register(data) {
+   return this.request('/auth/register', {
+     method: 'POST',
+     body: JSON.stringify(data)
+   });
+ }
+
+ // Message endpoints
   async getMessages(params = {}) {
     const query = new URLSearchParams();
     if (params.page) query.set('page', params.page);

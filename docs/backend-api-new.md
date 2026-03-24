@@ -401,6 +401,87 @@ Content-Type: application/json
 
 ---
 
+### 11. 用户消息
+
+#### 11.1 获取用户发布的消息
+
+**接口说明**: 获取指定用户发布的消息列表
+
+**请求地址**: `GET /api/users/{userId}/messages`
+
+**认证要求**: 否
+
+**请求参数**:
+
+| 参数名 | 类型    | 必填 | 说明     | 示例 |
+| ------ | ------- | ---- | -------- | ---- |
+| page   | integer | 否   | 页码     | `1`  |
+| limit  | integer | 否   | 每页数量 | `20` |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "messages": [
+      {
+        "id": 1,
+        "content": "今天图书馆遇到一个很帅的小哥哥...",
+        "type": "confession",
+        "status": "approved",
+        "like_count": 15,
+        "comment_count": 3,
+        "is_liked": false,
+        "created_at": "2024-01-15 10:30:00"
+      }
+    ],
+    "pagination": {
+      "total": 10,
+      "page": 1,
+      "limit": 20,
+      "total_pages": 1
+    }
+  }
+}
+```
+
+---
+
+### 12. 举报功能
+
+#### 12.1 举报消息
+
+**接口说明**: 举报违规消息
+
+**请求地址**: `POST /api/messages/{id}/report`
+
+**认证要求**: 是
+
+**请求头**:
+```
+Content-Type: application/json
+```
+
+**请求参数**:
+
+| 参数名 | 类型   | 必填 | 说明     | 约束 |
+| ------ | ------ | ---- | -------- | ---- |
+| reason | string | 是   | 举报原因 | 1-200字符 |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "message": "举报成功，我们会尽快处理",
+  "data": null
+}
+```
+
+---
+
 ## 数据模型扩展
 
 ### Notification（通知）
@@ -437,3 +518,14 @@ Content-Type: application/json
 | content         | text     | 消息内容   |
 | is_read         | boolean  | 是否已读   |
 | created_at      | datetime | 发送时间   |
+
+### Report（举报）
+
+| 字段名     | 类型     | 说明                   |
+| ---------- | -------- | ---------------------- |
+| id         | integer  | 主键，自增             |
+| message_id | integer  | 被举报的消息ID         |
+| user_id    | integer  | 举报者ID               |
+| reason     | text     | 举报原因               |
+| status     | enum     | 状态: pending, resolved, dismissed |
+| created_at | datetime | 举报时间               |

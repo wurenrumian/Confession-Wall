@@ -189,6 +189,63 @@ class APIClient {
     const endpoint = `/users/${userId}/messages${query.toString() ? '?' + query.toString() : ''}`;
     return this.request(endpoint);
   }
+
+  async searchMessages(query, params = {}) {
+    const queryParams = new URLSearchParams({ q: query });
+    if (params.page) queryParams.set('page', params.page);
+    if (params.limit) queryParams.set('limit', params.limit);
+    return this.request(`/messages/search?${queryParams.toString()}`);
+  }
+
+  async getNotifications(params = {}) {
+    const query = new URLSearchParams();
+    if (params.page) query.set('page', params.page);
+    if (params.limit) query.set('limit', params.limit);
+    const endpoint = `/notifications${query.toString() ? '?' + query.toString() : ''}`;
+    return this.request(endpoint);
+  }
+
+  async markNotificationRead(id) {
+    return this.request(`/notifications/${id}/read`, { method: 'PUT' });
+  }
+
+  async clearNotifications() {
+    return this.request('/notifications', { method: 'DELETE' });
+  }
+
+  async getConversations(params = {}) {
+    const query = new URLSearchParams();
+    if (params.page) query.set('page', params.page);
+    if (params.limit) query.set('limit', params.limit);
+    const endpoint = `/messages/conversations${query.toString() ? '?' + query.toString() : ''}`;
+    return this.request(endpoint);
+  }
+
+  async getConversation(userId, params = {}) {
+    const query = new URLSearchParams();
+    if (params.page) query.set('page', params.page);
+    if (params.limit) query.set('limit', params.limit);
+    const endpoint = `/messages/conversations/${userId}${query.toString() ? '?' + query.toString() : ''}`;
+    return this.request(endpoint);
+  }
+
+  async sendMessage(userId, content) {
+    return this.request(`/messages/conversations/${userId}`, {
+      method: 'POST',
+      body: JSON.stringify({ content })
+    });
+  }
+
+  async getSettings() {
+    return this.request('/settings');
+  }
+
+  async updateSettings(data) {
+    return this.request('/settings', {
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+  }
 }
 
 const apiClient = new APIClient();

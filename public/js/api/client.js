@@ -1,8 +1,40 @@
 class APIClient {
   constructor() {
-    this.baseURL = '/api';
+    this.baseURL = this.resolveBaseURL();
     this.token = localStorage.getItem('token');
-    this.refreshToken = localStorage.getItem('refresh_token');
+    this.refreshTokenValue = localStorage.getItem('refresh_token');
+  }
+
+  resolveBaseURL() {
+    const runtimeBaseURL = window.API_BASE_URL || localStorage.getItem('api_base_url');
+    if (runtimeBaseURL) {
+      return runtimeBaseURL.replace(/\/$/, '');
+    }
+
+    const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+    if (isLocalhost && window.location.port === '8080') {
+      return 'http://localhost:8081/api';
+    }
+
+    return '/api';
+  }
+
+  async parseResponse(response, endpoint) {
+    const rawText = await response.text();
+    if (!rawText) {
+      return {
+        code: response.status,
+        message: response.ok ? 'success' : `HTTP ${response.status}`,
+        data: null
+      };
+    }
+
+    try {
+      return JSON.parse(rawText);
+    } catch (parseError) {
+      const preview = rawText.slice(0, 200);
+      throw new Error(`接口 ${endpoint} 返回了非 JSON 响应（HTTP ${response.status}）: ${preview}`);
+    }
   }
 
   async request(endpoint, options = {}) {
@@ -15,21 +47,22 @@ class APIClient {
     }
     try {
       const response = await fetch(`${this.baseURL}${endpoint}`, config);
-      const data = await response.json();
+      const data = await this.parseResponse(response, endpoint);
       if (response.status === 401) {
         return this.handleUnauthorized(endpoint, options);
       }
       return data;
     } catch (error) {
+      console.error('[APIClient] 请求失败', { endpoint, error });
       throw error;
     }
   }
 
   async handleUnauthorized(endpoint, options) {
-    if (this.refreshToken) {
+    if (this.refreshTokenValue) {
       const refreshResponse = await this.request('/auth/refresh', {
         method: 'POST',
-        headers: { 'Authorization': `Bearer ${this.refreshToken}` }
+        headers: { 'Authorization': `Bearer ${this.refreshTokenValue}` }
       });
       if (refreshResponse.code === 200 && refreshResponse.data && refreshResponse.data.token) {
         this.token = refreshResponse.data.token;
@@ -39,7 +72,7 @@ class APIClient {
         }
         options.headers = { ...options.headers, Authorization: `Bearer ${this.token}` };
         const retryResponse = await fetch(`${this.baseURL}${endpoint}`, options);
-        return retryResponse.json();
+        return this.parseResponse(retryResponse, endpoint);
       }
     }
     localStorage.removeItem('token');
@@ -52,7 +85,7 @@ class APIClient {
 
   setToken(token, refreshToken, expiresIn) {
     this.token = token;
-    this.refreshToken = refreshToken;
+    this.refreshTokenValue = refreshToken;
     localStorage.setItem('token', token);
     localStorage.setItem('refresh_token', refreshToken);
     if (expiresIn) {
@@ -62,7 +95,7 @@ class APIClient {
 
   clearToken() {
     this.token = null;
-    this.refreshToken = null;
+    this.refreshTokenValue = null;
     localStorage.removeItem('token');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('user');
@@ -98,17 +131,17 @@ class APIClient {
   }
 
   async refreshToken() {
-   return this.request('/auth/refresh', { method: 'POST' });
- }
+    return this.request('/auth/refresh', { method: 'POST' });
+  }
 
- async register(data) {
-   return this.request('/auth/register', {
-     method: 'POST',
-     body: JSON.stringify(data)
-   });
- }
+  async register(data) {
+    return this.request('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }
 
- // Message endpoints
+  // Message endpoints
   async getMessages(params = {}) {
     const query = new URLSearchParams();
     if (params.page) query.set('page', params.page);

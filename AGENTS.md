@@ -12,36 +12,39 @@
 
 ## 目录结构
 
-├── index.html          # 论坛/时间线主页
-
-├── login.html          # 登录页面
-
-├── css/
-
-│   └── style.css       # 全部样式
-
-├── js/
-
-│   ├── api/
-
-│   │   └── client.js   # API 客户端封装（基于 Fetch，支持 Token 刷新）
-
-│   └── app.js          # (预留主应用逻辑文件)
-
-└── assets/
-
-    └── ruc-logo.svg    # RUC 品牌 logo
+```
+├── public/                 # 前端静态文件根目录（Web 服务器根目录）
+│   ├── index.html          # 论坛/时间线主页
+│   ├── login.html          # 登录页面
+│   ├── register.html       # 注册页面
+│   ├── explore.html        # 发现页面
+│   ├── notifications.html  # 通知页面
+│   ├── messages.html        # 私信页面
+│   ├── profile.html         # 个人主页
+│   ├── settings.html        # 设置页面
+│   ├── css/
+│   │   └── style.css       # 全部样式
+│   ├── js/
+│   │   ├── api/
+│   │   │   └── client.js   # API 客户端封装（基于 Fetch，支持 Token 刷新）
+│   │   └── app.js          # (预留主应用逻辑文件)
+│   └── assets/
+│       └── ruc-logo.svg    # RUC 品牌 logo
+├── docs/                   # API 文档
+├── backend/                # PHP 后端（待开发）
+├── AGENTS.md
+└── ...
 ```
 
 ---
 
 ## 构建与运行命令
 
-本项目为纯静态前端，无需构建。直接在浏览器中打开 HTML 文件即可。
+本项目为纯静态前端，无需构建。
 
+**本地开发**: 将 `public/` 目录作为 Web 服务器根目录即可运行。
 
-
-**生产部署**: 将 `index.html`、`login.html`、`css/`、`js/`、`assets/` 部署到任意静态文件服务器。
+**生产部署**: 将 `public/` 目录部署到任意静态文件服务器或配置 Nginx/Apache 将根目录指向 `public/`。
 
 ---
 

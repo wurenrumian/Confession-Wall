@@ -98,14 +98,18 @@ cd Confession-Wall
 php -S localhost:8080 -t public
 ```
 
-然后修改前端 API 客户端，将 `public/js/api/client.js` 中的：
-```javascript
-this.baseURL = '/api';
+然后在每个 HTML 页面中引入 API 地址配置。在 `<script type="module">` 之前添加：
+```html
+<script>
+  window.API_BASE_URL = 'http://localhost:8081/api';
+</script>
+<script type="module">
+  import apiClient from './js/api/client.js';
+  // ...
+</script>
 ```
-改为：
-```javascript
-this.baseURL = 'http://localhost:8081/api';
-```
+
+或者，如果你使用其他端口启动前端，可以设置不同的端口号，只要后端 API 地址正确即可。
 
 访问 `http://localhost:8080` 查看前端页面。
 

@@ -141,6 +141,48 @@ class APIClient {
     });
   }
 
+  async changePassword(data) {
+    return this.request('/auth/change-password', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }
+
+  async forgotPassword(email) {
+    return this.request('/auth/forgot-password', {
+      method: 'POST',
+      body: JSON.stringify({ email })
+    });
+  }
+
+  async resetPassword(token, password) {
+    return this.request('/auth/reset-password', {
+      method: 'POST',
+      body: JSON.stringify({ token, password })
+    });
+  }
+
+  async changePassword(data) {
+    return this.request('/auth/change-password', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }
+
+  async forgotPassword(email) {
+    return this.request('/auth/forgot-password', {
+      method: 'POST',
+      body: JSON.stringify({ email })
+    });
+  }
+
+  async resetPassword(token, password) {
+    return this.request('/auth/reset-password', {
+      method: 'POST',
+      body: JSON.stringify({ token, password })
+    });
+  }
+
   // Message endpoints
   async getMessages(params = {}) {
     const query = new URLSearchParams();

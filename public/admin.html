@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理后台 - 人大匿名墙</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+</head>
+<body>
+  <div class="container">
+    <div class="main-layout">
+      <aside class="sidebar-left">
+        <div class="logo-area">
+          <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="25" cy="25" r="24" stroke="#9E1B32" stroke-width="2" fill="none"/>
+            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#9E1B32" font-size="14" font-weight="900" font-family="Arial, sans-serif">RUC</text>
+          </svg>
+          <span class="logo-text">人大匿名墙</span>
+        </div>
+        <nav class="nav-links">
+          <a href="index.html" class="nav-item" id="navHome">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>首页</span>
+          </a>
+          <a href="explore.html" class="nav-item" id="navExplore">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>发现</span>
+          </a>
+          <a href="notifications.html" class="nav-item" id="navNotifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span>通知</span>
+            <span class="notification-badge" id="notifBadge" style="display:none">0</span>
+          </a>
+          <a href="messages.html" class="nav-item" id="navMessages">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>私信</span>
+          </a>
+          <a href="profile.html" class="nav-item" id="navProfile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>我的发布</span>
+          </a>
+          <a href="settings.html" class="nav-item" id="navSettings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>设置</span>
+          </a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="user-menu" id="userMenu">
+            <div class="avatar" id="userAvatar">?</div>
+            <div class="user-info">
+              <div class="user-name" id="userName">匿名用户</div>
+              <div class="user-handle" id="userHandle">@anonymous</div>
+            </div>
+            <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          </div>
+        </div>
+      </aside>
+
+      <main class="feed-main">
+        <header class="feed-header">
+          <h1>管理后台</h1>
+        </header>
+
+        <div class="admin-container">
+          <div class="admin-stats" id="adminStats">
+            <div class="admin-stat-card">
+              <div class="admin-stat-value" id="statPending">0</div>
+              <div class="admin-stat-label">待审核</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-value" id="statApproved">0</div>
+              <div class="admin-stat-label">已通过</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-value" id="statRejected">0</div>
+              <div class="admin-stat-label">已拒绝</div>
+            </div>
+          </div>
+
+          <div class="admin-tabs">
+            <button class="admin-tab active" data-status="pending">待审核</button>
+            <button class="admin-tab" data-status="approved">已通过</button>
+            <button class="admin-tab" data-status="rejected">已拒绝</button>
+          </div>
+
+          <div id="adminContent">
+            <div class="loading-spinner"><div class="spinner"></div></div>
+          </div>
+
+          <div class="load-more" id="loadMoreArea" style="display:none">
+            <button id="loadMoreBtn">加载更多</button>
+          </div>
+        </div>
+      </main>
+
+      <aside class="sidebar-right">
+        <div class="widget">
+          <div class="widget-header">管理帮助</div>
+          <div class="widget-content">
+            <div class="rules-item">
+              <div class="rule-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <div class="rule-text">
+                <div class="rule-title">审核说明</div>
+                <div class="rule-desc">请根据社区规则审核内容</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#">使用条款</a>
+          <a href="#">隐私政策</a>
+          <a href="#">联系我们</a>
+          <a href="#">帮助中心</a>
+          <span>&copy; 2024 RUC Confession Wall</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="rejectModal">
+    <div class="modal" style="max-width:400px">
+      <div class="modal-header">
+        <h2>拒绝原因</h2>
+        <button class="modal-close" id="closeRejectModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="rejectReason">拒绝原因（可选）</label>
+          <textarea id="rejectReason" class="form-textarea" placeholder="请输入拒绝原因..." maxlength="200"></textarea>
+        </div>
+        <button class="btn btn-danger" id="confirmRejectBtn" style="width:100%;margin-top:8px">确认拒绝</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="deleteConfirmModal">
+    <div class="modal" style="max-width:400px">
+      <div class="modal-header">
+        <h2>确认删除</h2>
+        <button class="modal-close" id="closeDeleteModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom:16px;color:var(--gray-600)">确定要强制删除这条消息吗？此操作不可撤销。</p>
+        <button class="btn btn-danger" id="confirmDeleteBtn" style="width:100%">确认删除</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="userMenuModal">
+    <div class="modal" style="max-width:300px;padding:8px">
+      <div class="modal-header" style="padding:8px 12px">
+        <h2 style="font-size:15px">账号</h2>
+        <button class="modal-close" id="closeUserMenuModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" style="padding:8px">
+        <button class="btn btn-secondary" id="logoutBtnSidebar" style="width:100%;text-align:left;padding:12px 16px;border-radius:8px">
+          退出登录
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <button class="scroll-to-top" id="scrollToTop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+
+  <script type="module">
+    import apiClient from './js/api/client.js';
+
+    if (!apiClient.isLoggedIn()) {
+      window.location.href = 'login.html';
+    }
+
+    const user = apiClient.getUser();
+    if (!user || user.role !== 'admin') {
+      showToast('权限不足，仅管理员可访问', 'error');
+      setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+    }
+
+    if (user) {
+      document.getElementById('userName').textContent = user.username || '管理员';
+      document.getElementById('userHandle').textContent = '@' + (user.username || 'admin');
+      document.getElementById('userAvatar').textContent = (user.username || 'A')[0].toUpperCase();
+    }
+
+    let currentPage = 1;
+    let currentStatus = 'pending';
+    let isLoading = false;
+    let rejectTargetId = null;
+    let deleteTargetId = null;
+
+    const adminContent = document.getElementById('adminContent');
+    const loadMoreArea = document.getElementById('loadMoreArea');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const toastContainer = document.getElementById('toastContainer');
+    const scrollToTop = document.getElementById('scrollToTop');
+    const rejectModal = document.getElementById('rejectModal');
+    const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+    const userMenuModal = document.getElementById('userMenuModal');
+
+    function showToast(message, type = 'default') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      toastContainer.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    function getTypeName(type) {
+      const names = { confession: '表白', secret: '秘密', question: '提问' };
+      return names[type] || '未知';
+    }
+
+    function getStatusName(status) {
+      const names = { pending: '待审核', approved: '已通过', rejected: '已拒绝' };
+      return names[status] || status;
+    }
+
+    function formatTime(dateStr) {
+      const date = new Date(dateStr);
+      const now = new Date();
+      const diff = (now - date) / 1000;
+      if (diff < 60) return '刚刚';
+      if (diff < 3600) return Math.floor(diff / 60) + '分钟前';
+      if (diff < 86400) return Math.floor(diff / 3600) + '小时前';
+      if (diff < 604800) return Math.floor(diff / 86400) + '天前';
+      return date.toLocaleDateString('zh-CN');
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function renderAdminMessage(msg) {
+      return `
+        <article class="tweet admin-tweet" data-id="${msg.id}">
+          <div class="tweet-main">
+            <div class="tweet-avatar">${msg.type === 'confession' ? '❤' : msg.type === 'secret' ? '👁' : '?'}</div>
+            <div class="tweet-content">
+              <div class="tweet-header">
+                <span class="tweet-author">${escapeHtml(msg.username || '匿名用户')}</span>
+                <span class="tweet-time">${formatTime(msg.created_at)}</span>
+                <span class="tweet-type-badge ${msg.type}">${getTypeName(msg.type)}</span>
+                <span class="admin-status-badge status-${msg.status}">${getStatusName(msg.status)}</span>
+              </div>
+              <p class="tweet-text">${escapeHtml(msg.content)}</p>
+              <div class="tweet-meta">
+                <span>点赞: ${msg.like_count || 0}</span>
+                <span>评论: ${msg.comment_count || 0}</span>
+              </div>
+              <div class="tweet-actions admin-actions">
+                ${msg.status === 'pending' ? `
+                  <button class="btn btn-sm btn-success" data-action="approve" data-id="${msg.id}">通过</button>
+                  <button class="btn btn-sm btn-warning" data-action="reject" data-id="${msg.id}">拒绝</button>
+                ` : ''}
+                <button class="btn btn-sm btn-danger" data-action="delete" data-id="${msg.id}">删除</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    async function loadPendingMessages(page = 1, append = false) {
+      if (isLoading) return;
+      isLoading = true;
+
+      if (!append) {
+        adminContent.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+      }
+
+      try {
+        const result = await apiClient.getPendingMessages({ page, limit: 20, status: currentStatus });
+
+        if (result.code === 200 && result.data) {
+          const { messages, stats, pagination } = result.data;
+
+          if (stats) {
+            document.getElementById('statPending').textContent = stats.pending || 0;
+            document.getElementById('statApproved').textContent = stats.approved || 0;
+            document.getElementById('statRejected').textContent = stats.rejected || 0;
+          }
+
+          if (!append) {
+            adminContent.innerHTML = '';
+          }
+
+          if (messages && messages.length > 0) {
+            adminContent.innerHTML += messages.map(renderAdminMessage).join('');
+            loadMoreArea.style.display = messages.length === 20 ? 'block' : 'none';
+          } else if (!append) {
+            adminContent.innerHTML = `
+              <div class="empty-state">
+                <div class="empty-icon">📋</div>
+                <h3>暂无内容</h3>
+                <p>当前分类下没有消息</p>
+              </div>
+            `;
+            loadMoreArea.style.display = 'none';
+          }
+
+          attachAdminListeners();
+        } else {
+          if (!append) {
+            adminContent.innerHTML = `
+              <div class="empty-state">
+                <h3>加载失败</h3>
+                <p>${result.message || '请稍后重试'}</p>
+              </div>
+            `;
+          }
+        }
+      } catch (error) {
+        if (!append) {
+          adminContent.innerHTML = `
+            <div class="empty-state">
+              <h3>网络错误</h3>
+              <p>请检查网络连接后刷新页面</p>
+            </div>
+          `;
+        }
+        showToast('网络错误，请稍后重试', 'error');
+      } finally {
+        isLoading = false;
+      }
+    }
+
+    function attachAdminListeners() {
+      document.querySelectorAll('.admin-tweet').forEach(tweet => {
+        const id = tweet.dataset.id;
+
+        const approveBtn = tweet.querySelector('[data-action="approve"]');
+        if (approveBtn) {
+          approveBtn.addEventListener('click', async () => {
+            approveBtn.disabled = true;
+            try {
+              const result = await apiClient.reviewMessage(id, { status: 'approved' });
+              if (result.code === 200) {
+                showToast('审核通过', 'success');
+                tweet.remove();
+                loadPendingMessages(1, false);
+              } else {
+                showToast(result.message || '操作失败', 'error');
+                approveBtn.disabled = false;
+              }
+            } catch {
+              showToast('网络错误', 'error');
+              approveBtn.disabled = false;
+            }
+          });
+        }
+
+        const rejectBtn = tweet.querySelector('[data-action="reject"]');
+        if (rejectBtn) {
+          rejectBtn.addEventListener('click', () => {
+            rejectTargetId = id;
+            document.getElementById('rejectReason').value = '';
+            rejectModal.classList.add('active');
+          });
+        }
+
+        const deleteBtn = tweet.querySelector('[data-action="delete"]');
+        if (deleteBtn) {
+          deleteBtn.addEventListener('click', () => {
+            deleteTargetId = id;
+            deleteConfirmModal.classList.add('active');
+          });
+        }
+      });
+    }
+
+    document.getElementById('confirmRejectBtn').addEventListener('click', async () => {
+      if (!rejectTargetId) return;
+      const reason = document.getElementById('rejectReason').value.trim();
+      const btn = document.getElementById('confirmRejectBtn');
+      btn.disabled = true;
+      btn.textContent = '处理中...';
+
+      try {
+        const result = await apiClient.reviewMessage(rejectTargetId, { status: 'rejected', reason });
+        if (result.code === 200) {
+          showToast('已拒绝', 'success');
+          rejectModal.classList.remove('active');
+          rejectTargetId = null;
+          loadPendingMessages(1, false);
+        } else {
+          showToast(result.message || '操作失败', 'error');
+        }
+      } catch {
+        showToast('网络错误', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '确认拒绝';
+      }
+    });
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', async () => {
+      if (!deleteTargetId) return;
+      const btn = document.getElementById('confirmDeleteBtn');
+      btn.disabled = true;
+      btn.textContent = '删除中...';
+
+      try {
+        const result = await apiClient.adminDeleteMessage(deleteTargetId);
+        if (result.code === 200) {
+          showToast('已删除', 'success');
+          deleteConfirmModal.classList.remove('active');
+          deleteTargetId = null;
+          loadPendingMessages(1, false);
+        } else {
+          showToast(result.message || '删除失败', 'error');
+        }
+      } catch {
+        showToast('网络错误', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '确认删除';
+      }
+    });
+
+    document.getElementById('closeRejectModal').addEventListener('click', () => {
+      rejectModal.classList.remove('active');
+      rejectTargetId = null;
+    });
+    rejectModal.addEventListener('click', (e) => {
+      if (e.target === rejectModal) { rejectModal.classList.remove('active'); rejectTargetId = null; }
+    });
+
+    document.getElementById('closeDeleteModal').addEventListener('click', () => {
+      deleteConfirmModal.classList.remove('active');
+      deleteTargetId = null;
+    });
+    deleteConfirmModal.addEventListener('click', (e) => {
+      if (e.target === deleteConfirmModal) { deleteConfirmModal.classList.remove('active'); deleteTargetId = null; }
+    });
+
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentStatus = tab.dataset.status;
+        currentPage = 1;
+        loadPendingMessages(1, false);
+      });
+    });
+
+    loadMoreBtn.addEventListener('click', () => {
+      currentPage++;
+      loadPendingMessages(currentPage, true);
+    });
+
+    document.getElementById('userMenu').addEventListener('click', () => {
+      userMenuModal.classList.add('active');
+    });
+    document.getElementById('closeUserMenuModal').addEventListener('click', () => {
+      userMenuModal.classList.remove('active');
+    });
+    userMenuModal.addEventListener('click', (e) => {
+      if (e.target === userMenuModal) userMenuModal.classList.remove('active');
+    });
+    document.getElementById('logoutBtnSidebar').addEventListener('click', async () => {
+      await apiClient.logout();
+      showToast('已退出登录', 'success');
+      setTimeout(() => { window.location.href = 'login.html'; }, 800);
+    });
+
+    window.addEventListener('scroll', () => {
+      scrollToTop.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    loadPendingMessages(1, false);
+  </script>
+
+  <style>
+    .admin-container {
+      padding: 16px;
+    }
+
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .admin-stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .admin-stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ruc-red);
+    }
+
+    .admin-stat-label {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+
+    .admin-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 8px;
+    }
+
+    .admin-tab {
+      padding: 8px 16px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-600);
+      transition: all var(--transition);
+    }
+
+    .admin-tab:hover {
+      background: var(--gray-50);
+    }
+
+    .admin-tab.active {
+      background: var(--ruc-red);
+      color: var(--white);
+      border-color: var(--ruc-red);
+    }
+
+    .admin-tweet {
+      border-left: 3px solid var(--gray-300);
+    }
+
+    .admin-tweet.status-pending {
+      border-left-color: var(--gray-400);
+    }
+
+    .admin-tweet.status-approved {
+      border-left-color: #22c55e;
+    }
+
+    .admin-tweet.status-rejected {
+      border-left-color: #ef4444;
+    }
+
+    .admin-status-badge {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .status-pending {
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
+
+    .status-approved {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .status-rejected {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .tweet-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 8px;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn-sm {
+      padding: 6px 14px;
+      font-size: 13px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+
+    .btn-success {
+      background: #22c55e;
+      color: var(--white);
+    }
+
+    .btn-success:hover {
+      background: #16a34a;
+    }
+
+    .btn-warning {
+      background: #f59e0b;
+      color: var(--white);
+    }
+
+    .btn-warning:hover {
+      background: #d97706;
+    }
+
+    .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      transition: all var(--transition);
+      resize: vertical;
+      min-height: 80px;
+      font-family: inherit;
+    }
+
+    .form-textarea:focus {
+      border-color: var(--ruc-red);
+      box-shadow: 0 0 0 3px rgba(158, 27, 50, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .admin-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>

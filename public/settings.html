@@ -44,6 +44,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             <span>设置</span>
           </a>
+          <a href="admin.html" class="nav-item" id="navAdmin" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>管理后台</span>
+          </a>
         </nav>
         <div class="sidebar-bottom">
           <div class="user-menu" id="userMenu">
@@ -270,6 +274,11 @@
       document.getElementById('userName').textContent = user.username || '匿名用户';
       document.getElementById('userHandle').textContent = '@' + (user.username || 'anonymous');
       document.getElementById('userAvatar').textContent = (user.username || 'A')[0].toUpperCase();
+
+      if (user && user.role === 'admin') {
+        const adminNav = document.getElementById('navAdmin');
+        if (adminNav) adminNav.style.display = '';
+      }
     }
 
     function showToast(message, type = 'default') {
@@ -326,7 +335,7 @@
       if (e.target === passwordModal) passwordModal.classList.remove('active');
     });
 
-    document.getElementById('savePasswordBtn').addEventListener('click', () => {
+    document.getElementById('savePasswordBtn').addEventListener('click', async () => {
       const currentPassword = document.getElementById('currentPassword').value;
       const newPassword = document.getElementById('newPassword').value;
       const confirmNewPassword = document.getElementById('confirmNewPassword').value;
@@ -344,8 +353,30 @@
         return;
       }
 
-      showToast('修改密码功能开发中', 'warning');
-      passwordModal.classList.remove('active');
+      const saveBtn = document.getElementById('savePasswordBtn');
+      saveBtn.disabled = true;
+      saveBtn.textContent = '保存中...';
+
+      try {
+        const result = await apiClient.changePassword({
+          current_password: currentPassword,
+          new_password: newPassword
+        });
+        if (result.code === 200) {
+          showToast('密码修改成功', 'success');
+          document.getElementById('currentPassword').value = '';
+          document.getElementById('newPassword').value = '';
+          document.getElementById('confirmNewPassword').value = '';
+          passwordModal.classList.remove('active');
+        } else {
+          showToast(result.message || '修改失败', 'error');
+        }
+      } catch {
+        showToast('网络错误，请稍后重试', 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = '保存';
+      }
     });
 
     document.getElementById('forgotPasswordBtn').addEventListener('click', () => {
@@ -371,8 +402,25 @@
         return;
       }
 
-      showToast('密码重置功能开发中', 'warning');
-      forgotPasswordModal.classList.remove('active');
+      const sendBtn = document.getElementById('sendResetBtn');
+      sendBtn.disabled = true;
+      sendBtn.textContent = '发送中...';
+
+      try {
+        const result = await apiClient.forgotPassword(email);
+        if (result.code === 200) {
+          showToast(result.message || '重置链接已发送到邮箱', 'success');
+          document.getElementById('resetEmail').value = '';
+          forgotPasswordModal.classList.remove('active');
+        } else {
+          showToast(result.message || '发送失败', 'error');
+        }
+      } catch {
+        showToast('网络错误，请稍后重试', 'error');
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = '发送重置链接';
+      }
     });
 
     document.getElementById('logoutBtn').addEventListener('click', async () => {

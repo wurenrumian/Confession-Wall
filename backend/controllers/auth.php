@@ -162,6 +162,43 @@ function forgotPassword($params, $body) {
 }
 
 /**
+ * 修改密码
+ */
+function changePassword($params, $body) {
+    global $pdo, $db;
+    
+    $user = requireAuth();
+    
+    $currentPassword = $body['current_password'] ?? '';
+    $newPassword = $body['new_password'] ?? '';
+    
+    if (empty($currentPassword) || empty($newPassword)) {
+        $db->error(400, '当前密码和新密码不能为空');
+    }
+    
+    if (strlen($newPassword) < 6 || strlen($newPassword) > 64) {
+        $db->error(400, '密码长度6-64字符');
+    }
+    
+    // 验证当前密码
+    if (!password_verify($currentPassword, $user['password'])) {
+        $db->error(401, '当前密码错误');
+    }
+    
+    // 新密码不能与当前密码相同
+    if (password_verify($newPassword, $user['password'])) {
+        $db->error(400, '新密码不能与当前密码相同');
+    }
+    
+    // 更新密码
+    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+    $stmt = $pdo->prepare('UPDATE users SET password = ? WHERE id = ?');
+    $stmt->execute([$hashedPassword, $user['id']]);
+    
+    $db->success(null, '密码修改成功');
+}
+
+/**
  * 重置密码
  */
 function resetPassword($params, $body) {

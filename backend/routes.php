@@ -26,6 +26,8 @@ $handlerToController = [
     'refreshToken' => 'auth',
     'forgotPassword' => 'auth',
     'resetPassword' => 'auth',
+    'changePassword' => 'auth',
+    'changePassword' => 'auth',
     
     // 通知相关
     'getNotifications' => 'notification',
@@ -75,6 +77,7 @@ function dispatch($path, $method) {
         ['POST', '/auth/refresh', 'refreshToken'],
         ['POST', '/auth/forgot-password', 'forgotPassword'],
         ['POST', '/auth/reset-password', 'resetPassword'],
+        ['POST', '/auth/change-password', 'changePassword'],
         
         // 通知相关
         ['GET', '/notifications', 'getNotifications'],

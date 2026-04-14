@@ -1,6 +1,6 @@
 # 匿名墙后端 (Confession Wall Backend)
 
-基于 PHP + SQLite 的校园匿名墙后端 API 服务。
+基于 PHP + MySQL 的校园匿名墙后端 API 服务。
 
 ## 功能特性
 
@@ -64,12 +64,18 @@ server {
 
 ### 2. 初始化数据库
 
-首次访问时，数据库会自动创建。如需手动初始化：
+首次访问时，数据库会自动创建和初始化。如需手动初始化：
 
 ```bash
 cd backend
-sqlite3 database.sqlite < database.sql
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS confession_wall DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+mysql -u root -p confession_wall < database.sql
 ```
+
+或者使用 XAMPP 的 phpMyAdmin:
+1. 访问 `http://localhost/phpmyadmin`
+2. 创建数据库 `confession_wall`，字符集选择 `utf8mb4_unicode_ci`
+3. 导入 `database.sql` 文件
 
 ### 3. 默认账号
 
@@ -131,7 +137,12 @@ sqlite3 database.sqlite < database.sql
 ```php
 return [
     'database' => [
-        'path' => __DIR__ . '/database.sqlite',
+        'host' => '127.0.0.1',
+        'port' => 3306,
+        'dbname' => 'confession_wall',
+        'username' => 'root',
+        'password' => '',
+        'charset' => 'utf8mb4',
     ],
     'jwt' => [
         'secret' => 'your-secret-key',

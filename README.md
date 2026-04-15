@@ -82,6 +82,79 @@ Confession-Wall/
 
 ## 快速开始
 
+### 推荐方式：使用 XAMPP + Apache + MySQL（团队本地开发）
+
+这是当前仓库最直接的本地运行方式，适合 Windows + XAMPP 环境。
+
+#### 1. 放置项目
+
+将项目放到 XAMPP 的 `htdocs` 目录下，例如：
+
+```text
+D:\XAMPP\htdocs\Confession-Wall
+```
+
+#### 2. 启动服务
+
+在 XAMPP Control Panel 中启动：
+
+- `Apache`
+- `MySQL`
+
+#### 3. 初始化数据库
+
+访问 `http://localhost/phpmyadmin`
+
+1. 创建数据库 `confession_wall`
+2. 排序规则选择 `utf8mb4_unicode_ci`
+3. 导入 [`backend/database.sql`](backend/database.sql)
+
+项目默认数据库配置位于 [`backend/config.php`](backend/config.php)：
+
+```php
+'database' => [
+    'host' => '127.0.0.1',
+    'port' => 3306,
+    'dbname' => 'confession_wall',
+    'username' => 'root',
+    'password' => '',
+    'charset' => 'utf8mb4',
+],
+```
+
+如果你的本地 MySQL 账号密码不同，请先修改该文件。
+
+#### 4. 确认 Apache 支持重写
+
+本仓库已经包含 Apache 所需的 `.htaccess`，用于将 `/api/...` 请求转发到 PHP 后端。
+
+请确认 Apache 已启用：
+
+- `mod_rewrite`
+- 目录级别 `AllowOverride`
+
+XAMPP 默认通常已启用 `mod_rewrite`。如果 API 返回 404，请优先检查这两项。
+
+#### 5. 访问项目
+
+浏览器打开：
+
+```text
+http://localhost/Confession-Wall/
+```
+
+也可以直接访问登录页：
+
+```text
+http://localhost/Confession-Wall/public/login.html
+```
+
+当前仓库已经兼容子目录部署，前端会自动请求：
+
+```text
+http://localhost/Confession-Wall/api
+```
+
 ### 方式一：使用 PHP 内置服务器（开发环境）
 
 需要启动**两个**终端：
@@ -113,9 +186,11 @@ php -S localhost:8080 -t public
 
 访问 `http://localhost:8080` 查看前端页面。
 
-### 方式二：使用 Nginx/Apache（推荐用于生产）
+### 方式二：使用 Nginx/Apache（自定义部署）
 
-将 Web 服务器根目录指向项目根目录，并配置 URL 重写将 `/api` 请求转发到 `backend/index.php`。
+如果不是使用 XAMPP 默认的 `http://localhost/Confession-Wall/` 目录方式，而是自行配置虚拟主机或 Nginx，可参考以下方式部署。
+
+Apache 下，当前仓库根目录和 `backend/` 目录均已提供 `.htaccess`，通常无需额外修改应用代码。
 
 **Nginx 配置示例：**
 ```nginx
@@ -208,14 +283,22 @@ php backend/test-api.php
 ```php
 return [
     'database' => [
-        'path' => __DIR__ . '/database.sqlite',
+        'host' => '127.0.0.1',
+        'port' => 3306,
+        'dbname' => 'confession_wall',
+        'username' => 'root',
+        'password' => '',
+        'charset' => 'utf8mb4',
     ],
     'jwt' => [
         'secret' => 'your-secret-key',
         'expiration' => 86400,
+        'refresh_expiration' => 604800,
     ],
     'moderation' => [
-        'require_approval' => true,
+        'require_approval' => false,
+        'max_content_length' => 500,
+        'max_comment_length' => 200,
     ],
 ];
 ```

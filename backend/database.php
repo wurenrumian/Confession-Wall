@@ -6,35 +6,59 @@
 class Database {
     private static $instance = null;
     private $pdo;
-    
+
     private function __construct() {
         global $config;
-        
-        $dbPath = $config['database']['path'];
-        
-        // 确保数据库文件存在
-        if (!file_exists($dbPath)) {
-            $this->initDatabase($dbPath);
-        }
-        
+
+        $dbConfig = $config['database'];
+
         try {
-            $this->pdo = new PDO('sqlite:' . $dbPath);
+            // 先连接到 MySQL 服务器（不指定数据库）
+            $dsn = sprintf(
+                'mysql:host=%s;port=%d;charset=%s',
+                $dbConfig['host'],
+                $dbConfig['port'],
+                $dbConfig['charset']
+            );
+            
+            $tempPdo = new PDO($dsn, $dbConfig['username'], $dbConfig['password']);
+            $tempPdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // 检查数据库是否存在，不存在则创建
+            $dbName = $dbConfig['dbname'];
+            $result = $tempPdo->query("SHOW DATABASES LIKE '$dbName'");
+            
+            if ($result->rowCount() === 0) {
+                // 数据库不存在，创建它
+                $tempPdo->exec("CREATE DATABASE `$dbName` DEFAULT CHARACTER SET {$dbConfig['charset']} COLLATE {$dbConfig['charset']}_unicode_ci");
+                $this->initDatabase($tempPdo, $dbName);
+            }
+
+            // 连接到目标数据库
+            $dsn = sprintf(
+                'mysql:host=%s;port=%d;dbname=%s;charset=%s',
+                $dbConfig['host'],
+                $dbConfig['port'],
+                $dbName,
+                $dbConfig['charset']
+            );
+            
+            $this->pdo = new PDO($dsn, $dbConfig['username'], $dbConfig['password']);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            
         } catch (PDOException $e) {
-            $this->sendResponse(500, '数据库连接失败');
+            $this->sendResponse(500, '数据库连接失败: ' . $e->getMessage());
         }
     }
-    
-    private function initDatabase($dbPath) {
-        // 创建空数据库文件
-        touch($dbPath);
-        
+
+    private function initDatabase($pdo, $dbName) {
         // 导入 SQL 脚本
         $sqlFile = __DIR__ . '/database.sql';
         if (file_exists($sqlFile)) {
-            $pdo = new PDO('sqlite:' . $dbPath);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // 切换到新数据库
+            $pdo->exec("USE `$dbName`");
             
             $sql = file_get_contents($sqlFile);
             $pdo->exec($sql);

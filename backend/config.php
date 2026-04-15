@@ -4,9 +4,14 @@
  */
 
 return [
-    // 数据库配置 (SQLite)
+    // 数据库配置 (MySQL)
     'database' => [
-        'path' => __DIR__ . '/database.sqlite',
+        'host' => '127.0.0.1',
+        'port' => 3306,
+        'dbname' => 'confession_wall',
+        'username' => 'root',
+        'password' => '',
+        'charset' => 'utf8mb4',
     ],
     
     // JWT 配置

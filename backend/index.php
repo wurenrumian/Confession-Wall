@@ -53,8 +53,8 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 // 移除基础路径和查询参数
 $basePath = '/api';
 $path = parse_url($requestUri, PHP_URL_PATH);
-if (strpos($path, $basePath) === 0) {
-    $path = substr($path, strlen($basePath));
+if (($apiPos = strpos($path, $basePath)) !== false) {
+    $path = substr($path, $apiPos + strlen($basePath));
 }
 if ($path === false || $path === '') {
     $path = '/';

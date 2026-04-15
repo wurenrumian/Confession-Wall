@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /Confession-Wall/
+
+# Let real files and directories pass through unchanged.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route API requests into the backend entrypoint.
+RewriteRule ^api(?:/(.*))?$ backend/index.php [QSA,L]

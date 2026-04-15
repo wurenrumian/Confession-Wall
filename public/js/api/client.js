@@ -16,7 +16,16 @@ class APIClient {
       return 'http://localhost:8081/api';
     }
 
-    return '/api';
+    const { origin, pathname } = window.location;
+    const publicSegment = '/public/';
+    const publicIndex = pathname.indexOf(publicSegment);
+
+    if (publicIndex !== -1) {
+      const projectBase = pathname.slice(0, publicIndex);
+      return `${origin}${projectBase}/api`;
+    }
+
+    return `${origin}/api`;
   }
 
   async parseResponse(response, endpoint) {

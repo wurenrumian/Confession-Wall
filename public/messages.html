@@ -5,49 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>私信 - 人大匿名墙</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
 </head>
 <body>
   <div class="container">
     <div class="main-layout">
       <aside class="sidebar-left">
         <div class="logo-area">
-          <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="25" cy="25" r="24" stroke="#9E1B32" stroke-width="2" fill="none"/>
-            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#9E1B32" font-size="14" font-weight="900" font-family="Arial, sans-serif">RUC</text>
-          </svg>
           <span class="logo-text">人大匿名墙</span>
         </div>
         <nav class="nav-links">
-          <a href="index.html" class="nav-item" id="navHome">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            <span>首页</span>
-          </a>
-          <a href="explore.html" class="nav-item" id="navExplore">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <span>发现</span>
-          </a>
-          <a href="notifications.html" class="nav-item" id="navNotifications">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span>通知</span>
-            <span class="notification-badge" id="notifBadge" style="display:none">0</span>
-          </a>
-          <a href="messages.html" class="nav-item active" id="navMessages">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>私信</span>
-          </a>
-          <a href="profile.html" class="nav-item" id="navProfile">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span>我的发布</span>
-          </a>
-          <a href="settings.html" class="nav-item" id="navSettings">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            <span>设置</span>
-          </a>
-          <a href="admin.html" class="nav-item" id="navAdmin" style="display:none">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>管理后台</span>
-          </a>
+          <a href="index.html" class="nav-item"><span>首页</span></a>
+          <a href="explore.html" class="nav-item"><span>发现</span></a>
+          <a href="notifications.html" class="nav-item"><span>通知</span></a>
+          <a href="messages.html" class="nav-item active"><span>私信</span></a>
+          <a href="profile.html" class="nav-item"><span>我的发布</span></a>
+          <a href="settings.html" class="nav-item"><span>设置</span></a>
+          <a href="admin.html" class="nav-item" id="navAdmin" style="display:none"><span>管理后台</span></a>
         </nav>
         <div class="sidebar-bottom">
           <div class="user-menu" id="userMenu">
@@ -56,7 +29,6 @@
               <div class="user-name" id="userName">匿名用户</div>
               <div class="user-handle" id="userHandle">@anonymous</div>
             </div>
-            <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
           </div>
         </div>
       </aside>
@@ -66,64 +38,40 @@
           <h1>私信</h1>
         </header>
 
-        <div id="conversationList">
-          <div class="loading-spinner"><div class="spinner"></div></div>
-        </div>
+        <section class="compose-card">
+          <h2>发起对话</h2>
+          <div class="compose-grid">
+            <input id="receiverSearch" type="text" placeholder="输入用户名搜索" autocomplete="off">
+            <textarea id="firstMessage" placeholder="输入消息内容" maxlength="500"></textarea>
+            <button class="btn btn-primary" id="startConversationBtn">发送私信</button>
+          </div>
+          <div id="userSuggestions" class="user-suggestions"></div>
+        </section>
 
-        <div class="load-more" id="loadMoreArea" style="display:none">
-          <button id="loadMoreBtn">加载更多</button>
-        </div>
+        <section id="conversationList"></section>
       </main>
 
       <aside class="sidebar-right">
         <div class="widget">
-          <div class="widget-header">私信说明</div>
+          <div class="widget-header">说明</div>
           <div class="widget-content">
-            <div class="rules-item">
-              <div class="rule-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div class="rule-text">
-                <div class="rule-title">隐私保护</div>
-                <div class="rule-desc">私信内容仅双方可见</div>
-              </div>
-            </div>
-            <div class="rules-item">
-              <div class="rule-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </div>
-              <div class="rule-text">
-                <div class="rule-title">文明交流</div>
-                <div class="rule-desc">请友善沟通，文明用语</div>
-              </div>
-            </div>
+            <p>输入用户名即可发起一段最简单的私信对话。</p>
           </div>
-        </div>
-
-        <div class="footer-links">
-          <a href="#">使用条款</a>
-          <a href="#">隐私政策</a>
-          <a href="#">联系我们</a>
-          <a href="#">帮助中心</a>
-          <span>© 2024 RUC Confession Wall</span>
         </div>
       </aside>
     </div>
   </div>
 
   <div class="modal-overlay" id="chatModal">
-    <div class="modal" style="max-width:500px;height:70vh;display:flex;flex-direction:column">
+    <div class="modal chat-modal">
       <div class="modal-header">
         <h2 id="chatTitle">聊天</h2>
-        <button class="modal-close" id="closeChatModal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+        <button class="modal-close" id="closeChatModal">×</button>
       </div>
-      <div class="modal-body" id="chatMessages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px">
-      </div>
-      <div class="comment-compose" style="border-top:1px solid var(--border);padding:12px 16px">
-        <textarea id="messageInput" placeholder="输入消息..." maxlength="500" style="width:100%;border:1px solid var(--gray-200);border-radius:8px;padding:10px 14px;resize:none;min-height:60px;font-size:14px"></textarea>
-        <button class="btn btn-primary" id="sendMessage" style="margin-top:8px;width:100%">发送</button>
+      <div class="modal-body chat-body" id="chatMessages"></div>
+      <div class="chat-compose">
+        <textarea id="messageInput" placeholder="输入消息内容" maxlength="500"></textarea>
+        <button class="btn btn-primary" id="sendMessageBtn">发送</button>
       </div>
     </div>
   </div>
@@ -132,272 +80,344 @@
     <div class="modal" style="max-width:300px;padding:8px">
       <div class="modal-header" style="padding:8px 12px">
         <h2 style="font-size:15px">账号</h2>
-        <button class="modal-close" id="closeUserMenuModal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+        <button class="modal-close" id="closeUserMenuModal">×</button>
       </div>
       <div class="modal-body" style="padding:8px">
-        <button class="btn btn-secondary" id="logoutBtn" style="width:100%;text-align:left;padding:12px 16px;border-radius:8px">
-          退出登录
-        </button>
+        <button class="btn btn-secondary" id="logoutBtn" style="width:100%">退出登录</button>
       </div>
     </div>
   </div>
 
   <div class="toast-container" id="toastContainer"></div>
-  <button class="scroll-to-top" id="scrollToTop">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-  </button>
 
   <script type="module">
-    import apiClient from './js/api/client.js';
+    import apiClient from './js/api/client.js'
 
-    let currentPage = 1;
-    let isLoading = false;
-    let currentChatUserId = null;
-    let currentChatUserName = null;
+    const conversationList = document.getElementById('conversationList')
+    const receiverSearch = document.getElementById('receiverSearch')
+    const userSuggestions = document.getElementById('userSuggestions')
+    const firstMessage = document.getElementById('firstMessage')
+    const startConversationBtn = document.getElementById('startConversationBtn')
+    const chatModal = document.getElementById('chatModal')
+    const chatTitle = document.getElementById('chatTitle')
+    const chatMessages = document.getElementById('chatMessages')
+    const messageInput = document.getElementById('messageInput')
+    const sendMessageBtn = document.getElementById('sendMessageBtn')
+    const toastContainer = document.getElementById('toastContainer')
+    const userMenu = document.getElementById('userMenu')
+    const userMenuModal = document.getElementById('userMenuModal')
 
-    const conversationList = document.getElementById('conversationList');
-    const loadMoreArea = document.getElementById('loadMoreArea');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    const chatModal = document.getElementById('chatModal');
-    const chatMessages = document.getElementById('chatMessages');
-    const chatTitle = document.getElementById('chatTitle');
-    const messageInput = document.getElementById('messageInput');
-    const sendMessageBtn = document.getElementById('sendMessage');
-    const userMenuModal = document.getElementById('userMenuModal');
-    const userMenu = document.getElementById('userMenu');
-    const toastContainer = document.getElementById('toastContainer');
-    const scrollToTop = document.getElementById('scrollToTop');
+    let selectedUser = null
+    let currentChatUser = null
 
     if (!apiClient.isLoggedIn()) {
-      window.location.href = 'login.html';
+      window.location.href = 'login.html'
     }
 
-    const currentUser = apiClient.getUser();
-
+    const currentUser = apiClient.getUser()
     if (currentUser) {
-      document.getElementById('userName').textContent = currentUser.username || '匿名用户';
-      document.getElementById('userHandle').textContent = '@' + (currentUser.username || 'anonymous');
-      document.getElementById('userAvatar').textContent = (currentUser.username || 'A')[0].toUpperCase();
+      document.getElementById('userName').textContent = currentUser.username || '匿名用户'
+      document.getElementById('userHandle').textContent = `@${currentUser.username || 'anonymous'}`
+      document.getElementById('userAvatar').textContent = (currentUser.username || 'A')[0].toUpperCase()
 
-      if (currentUser && currentUser.role === 'admin') {
-        const adminNav = document.getElementById('navAdmin');
-        if (adminNav) adminNav.style.display = '';
+      if (currentUser.role === 'admin') {
+        document.getElementById('navAdmin').style.display = ''
       }
     }
 
     function showToast(message, type = 'default') {
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.textContent = message;
-      toastContainer.appendChild(toast);
-      setTimeout(() => toast.remove(), 3000);
+      const toast = document.createElement('div')
+      toast.className = `toast ${type}`
+      toast.textContent = message
+      toastContainer.appendChild(toast)
+      setTimeout(() => toast.remove(), 3000)
+    }
+
+    function escapeHtml(text = '') {
+      const div = document.createElement('div')
+      div.textContent = text
+      return div.innerHTML
     }
 
     function formatTime(dateStr) {
-      const date = new Date(dateStr);
-      const now = new Date();
-      const diff = (now - date) / 1000;
-      if (diff < 60) return '刚刚';
-      if (diff < 3600) return Math.floor(diff / 60) + '分钟前';
-      if (diff < 86400) return Math.floor(diff / 3600) + '小时前';
-      if (diff < 604800) return Math.floor(diff / 86400) + '天前';
-      return date.toLocaleDateString('zh-CN');
+      const date = new Date(dateStr.replace(' ', 'T'))
+      const diffSeconds = Math.floor((Date.now() - date.getTime()) / 1000)
+
+      if (diffSeconds < 60) return '刚刚'
+      if (diffSeconds < 3600) return `${Math.floor(diffSeconds / 60)} 分钟前`
+      if (diffSeconds < 86400) return `${Math.floor(diffSeconds / 3600)} 小时前`
+      if (diffSeconds < 604800) return `${Math.floor(diffSeconds / 86400)} 天前`
+      return date.toLocaleDateString('zh-CN')
     }
 
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    function renderConversation(conv) {
-      const avatar = conv.user.username ? conv.user.username[0].toUpperCase() : '?';
-      return `
-        <div class="conversation-item" data-user-id="${conv.user.id}" data-username="${escapeHtml(conv.user.username)}">
-          <div class="conversation-avatar">${avatar}</div>
-          <div class="conversation-content">
-            <div class="conversation-header">
-              <span class="conversation-name">${escapeHtml(conv.user.username)}</span>
-              <span class="conversation-time">${formatTime(conv.last_message_time)}</span>
-            </div>
-            <div class="conversation-preview">${escapeHtml(conv.last_message)}</div>
+    function renderConversationList(conversations) {
+      if (!conversations.length) {
+        conversationList.innerHTML = `
+          <div class="empty-state">
+            <h3>暂无私信</h3>
+            <p>上方输入用户名和内容后，就能直接发起对话。</p>
           </div>
-          ${conv.unread_count > 0 ? `<span class="notification-badge">${conv.unread_count}</span>` : ''}
-        </div>
-      `;
-    }
-
-    async function loadConversations(page = 1, append = false) {
-      if (isLoading) return;
-      isLoading = true;
-
-      if (!append) {
-        conversationList.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+        `
+        return
       }
 
-      try {
-        const result = await apiClient.getConversations({ page, limit: 20 });
+      conversationList.innerHTML = conversations.map((item) => `
+        <article class="conversation-item" data-user-id="${item.user.id}" data-username="${escapeHtml(item.user.username)}">
+          <div class="conversation-avatar">${escapeHtml((item.user.username || '?')[0].toUpperCase())}</div>
+          <div class="conversation-main">
+            <div class="conversation-row">
+              <strong>${escapeHtml(item.user.username)}</strong>
+              <span class="conversation-time">${formatTime(item.last_message_time)}</span>
+            </div>
+            <p class="conversation-preview">${escapeHtml(item.last_message || '')}</p>
+          </div>
+          ${item.unread_count > 0 ? `<span class="conversation-badge">${item.unread_count}</span>` : ''}
+        </article>
+      `).join('')
 
-        if (result.code === 200 && result.data) {
-          const { conversations } = result.data;
-
-          if (!append) {
-            conversationList.innerHTML = '';
-          }
-
-          if (conversations && conversations.length > 0) {
-            conversationList.innerHTML += conversations.map(renderConversation).join('');
-            loadMoreArea.style.display = conversations.length === 20 ? 'block' : 'none';
-            attachConversationListeners();
-          } else if (!append) {
-            conversationList.innerHTML = `
-              <div class="empty-state">
-                <div class="empty-icon">💬</div>
-                <h3>暂无私信</h3>
-                <p>还没有任何私信对话</p>
-              </div>
-            `;
-            loadMoreArea.style.display = 'none';
-          }
-        }
-      } catch (error) {
-        showToast('网络错误，请稍后重试', 'error');
-      } finally {
-        isLoading = false;
-      }
-    }
-
-    async function loadChatMessages(userId, username) {
-      chatTitle.textContent = username;
-      chatMessages.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
-      chatModal.classList.add('active');
-
-      try {
-        const result = await apiClient.getConversation(userId, { limit: 50 });
-
-        if (result.code === 200 && result.data) {
-          const { messages, user } = result.data;
-
-          if (messages && messages.length > 0) {
-            chatMessages.innerHTML = messages.map(msg => {
-              const isMe = msg.sender_id === currentUser.id;
-              return `
-                <div class="chat-message ${isMe ? 'sent' : 'received'}">
-                  <div class="chat-bubble">${escapeHtml(msg.content)}</div>
-                  <div class="chat-time">${formatTime(msg.created_at)}</div>
-                </div>
-              `;
-            }).join('');
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-          } else {
-            chatMessages.innerHTML = '<div style="text-align:center;color:var(--gray-400);padding:40px">暂无消息，开始对话吧</div>';
-          }
-        }
-      } catch (error) {
-        chatMessages.innerHTML = '<div style="text-align:center;color:var(--red);padding:40px">加载失败</div>';
-      }
-    }
-
-    function attachConversationListeners() {
-      document.querySelectorAll('.conversation-item').forEach(item => {
+      document.querySelectorAll('.conversation-item').forEach((item) => {
         item.addEventListener('click', () => {
-          const userId = item.dataset.userId;
-          const username = item.dataset.username;
-          currentChatUserId = userId;
-          currentChatUserName = username;
-          loadChatMessages(userId, username);
-        });
-      });
+          openChat({
+            id: Number(item.dataset.userId),
+            username: item.dataset.username
+          })
+        })
+      })
     }
 
-    loadMoreBtn.addEventListener('click', () => {
-      currentPage++;
-      loadConversations(currentPage, true);
-    });
+    function renderSuggestions(users) {
+      if (!users.length) {
+        userSuggestions.innerHTML = ''
+        return
+      }
 
-    document.getElementById('closeChatModal').addEventListener('click', () => {
-      chatModal.classList.remove('active');
-      currentChatUserId = null;
-    });
+      userSuggestions.innerHTML = users.map((user) => `
+        <button type="button" class="suggestion-item" data-id="${user.id}" data-username="${escapeHtml(user.username)}">
+          ${escapeHtml(user.username)}
+        </button>
+      `).join('')
 
-    chatModal.addEventListener('click', (e) => {
-      if (e.target === chatModal) chatModal.classList.remove('active');
-    });
+      document.querySelectorAll('.suggestion-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          selectedUser = {
+            id: Number(item.dataset.id),
+            username: item.dataset.username
+          }
+          receiverSearch.value = selectedUser.username
+          userSuggestions.innerHTML = ''
+        })
+      })
+    }
+
+    async function loadConversations() {
+      conversationList.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>'
+
+      try {
+        const result = await apiClient.getConversations({ page: 1, limit: 50 })
+        if (result.code === 200 && result.data) {
+          renderConversationList(result.data.conversations || [])
+        } else {
+          showToast(result.message || '加载私信失败', 'error')
+        }
+      } catch (error) {
+        showToast('网络错误，请稍后重试', 'error')
+      }
+    }
+
+    async function openChat(user) {
+      currentChatUser = user
+      chatTitle.textContent = user.username
+      chatMessages.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>'
+      chatModal.classList.add('active')
+
+      try {
+        const result = await apiClient.getConversation(user.id, { page: 1, limit: 50 })
+        if (result.code === 200 && result.data) {
+          const messages = result.data.messages || []
+          if (!messages.length) {
+            chatMessages.innerHTML = '<div class="empty-chat">还没有聊天记录，发第一条消息吧。</div>'
+            return
+          }
+
+          chatMessages.innerHTML = messages.map((message) => {
+            const isSelf = Number(message.sender_id) === Number(currentUser.id)
+            return `
+              <div class="chat-message ${isSelf ? 'sent' : 'received'}">
+                <div class="chat-bubble">${escapeHtml(message.content)}</div>
+                <div class="chat-time">${formatTime(message.created_at)}</div>
+              </div>
+            `
+          }).join('')
+          chatMessages.scrollTop = chatMessages.scrollHeight
+        } else {
+          chatMessages.innerHTML = '<div class="empty-chat">加载失败，请稍后重试。</div>'
+        }
+      } catch (error) {
+        chatMessages.innerHTML = '<div class="empty-chat">加载失败，请稍后重试。</div>'
+      }
+    }
+
+    async function doSendMessage(userId, content, shouldResetModalInput = true) {
+      const result = await apiClient.sendMessage(userId, content)
+      if (result.code !== 201) {
+        throw new Error(result.message || '发送失败')
+      }
+
+      if (shouldResetModalInput) {
+        messageInput.value = ''
+      }
+
+      await loadConversations()
+
+      if (currentChatUser && Number(currentChatUser.id) === Number(userId)) {
+        await openChat(currentChatUser)
+      }
+    }
+
+    receiverSearch.addEventListener('input', async () => {
+      const keyword = receiverSearch.value.trim()
+      selectedUser = selectedUser && selectedUser.username === keyword ? selectedUser : null
+
+      if (keyword.length < 2) {
+        userSuggestions.innerHTML = ''
+        return
+      }
+
+      try {
+        const result = await apiClient.searchUsers(keyword)
+        if (result.code === 200 && result.data) {
+          renderSuggestions(result.data.users || [])
+        }
+      } catch (error) {
+        userSuggestions.innerHTML = ''
+      }
+    })
+
+    startConversationBtn.addEventListener('click', async () => {
+      const content = firstMessage.value.trim()
+
+      if (!selectedUser) {
+        showToast('请先从搜索结果里选择一个用户名', 'warning')
+        return
+      }
+
+      if (!content) {
+        showToast('请输入消息内容', 'warning')
+        return
+      }
+
+      startConversationBtn.disabled = true
+      try {
+        await doSendMessage(selectedUser.id, content, false)
+        firstMessage.value = ''
+        showToast('私信已发送', 'success')
+      } catch (error) {
+        showToast(error.message, 'error')
+      } finally {
+        startConversationBtn.disabled = false
+      }
+    })
 
     sendMessageBtn.addEventListener('click', async () => {
-      const content = messageInput.value.trim();
+      const content = messageInput.value.trim()
+      if (!currentChatUser) {
+        return
+      }
+
       if (!content) {
-        showToast('请输入消息', 'warning');
-        return;
+        showToast('请输入消息内容', 'warning')
+        return
       }
-      if (!currentChatUserId) return;
 
-      sendMessageBtn.disabled = true;
-
+      sendMessageBtn.disabled = true
       try {
-        const result = await apiClient.sendMessage(currentChatUserId, content);
-        if (result.code === 201) {
-          messageInput.value = '';
-          const isMe = true;
-          const newMsg = document.createElement('div');
-          newMsg.className = 'chat-message sent';
-          newMsg.innerHTML = `
-            <div class="chat-bubble">${escapeHtml(content)}</div>
-            <div class="chat-time">刚刚</div>
-          `;
-          const emptyMsg = chatMessages.querySelector('div[style*="暂无消息"]');
-          if (emptyMsg) emptyMsg.remove();
-          chatMessages.appendChild(newMsg);
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        } else {
-          showToast(result.message || '发送失败', 'error');
-        }
-      } catch {
-        showToast('网络错误，请稍后重试', 'error');
+        await doSendMessage(currentChatUser.id, content)
+      } catch (error) {
+        showToast(error.message, 'error')
       } finally {
-        sendMessageBtn.disabled = false;
+        sendMessageBtn.disabled = false
       }
-    });
+    })
 
-    messageInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessageBtn.click();
+    document.getElementById('closeChatModal').addEventListener('click', () => {
+      chatModal.classList.remove('active')
+    })
+
+    chatModal.addEventListener('click', (event) => {
+      if (event.target === chatModal) {
+        chatModal.classList.remove('active')
       }
-    });
+    })
 
     userMenu.addEventListener('click', () => {
-      userMenuModal.classList.add('active');
-    });
+      userMenuModal.classList.add('active')
+    })
 
     document.getElementById('closeUserMenuModal').addEventListener('click', () => {
-      userMenuModal.classList.remove('active');
-    });
+      userMenuModal.classList.remove('active')
+    })
 
-    userMenuModal.addEventListener('click', (e) => {
-      if (e.target === userMenuModal) userMenuModal.classList.remove('active');
-    });
+    userMenuModal.addEventListener('click', (event) => {
+      if (event.target === userMenuModal) {
+        userMenuModal.classList.remove('active')
+      }
+    })
 
     document.getElementById('logoutBtn').addEventListener('click', async () => {
-      await apiClient.logout();
-      showToast('已退出登录', 'success');
-      setTimeout(() => { window.location.href = 'login.html'; }, 800);
-    });
+      await apiClient.logout()
+      window.location.href = 'login.html'
+    })
 
-    window.addEventListener('scroll', () => {
-      scrollToTop.classList.toggle('visible', window.scrollY > 300);
-    });
-
-    scrollToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    loadConversations(1, false);
+    loadConversations()
   </script>
 
   <style>
+    .compose-card {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compose-card h2 {
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .compose-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .compose-grid input,
+    .compose-grid textarea,
+    .chat-compose textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    .compose-grid textarea,
+    .chat-compose textarea {
+      min-height: 88px;
+    }
+
+    .user-suggestions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .suggestion-item {
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      border-radius: 999px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
     .conversation-item {
       display: flex;
       align-items: center;
@@ -405,7 +425,6 @@
       padding: 16px;
       border-bottom: 1px solid var(--border);
       cursor: pointer;
-      transition: background var(--transition);
     }
 
     .conversation-item:hover {
@@ -413,8 +432,8 @@
     }
 
     .conversation-avatar {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: var(--ruc-red);
       color: var(--white);
@@ -422,44 +441,75 @@
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 18px;
       flex-shrink: 0;
     }
 
-    .conversation-content {
+    .conversation-main {
       flex: 1;
       min-width: 0;
     }
 
-    .conversation-header {
+    .conversation-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-
-    .conversation-name {
-      font-weight: 700;
-      font-size: 15px;
-    }
-
-    .conversation-time {
-      font-size: 12px;
-      color: var(--gray-400);
+      gap: 12px;
+      margin-bottom: 6px;
     }
 
     .conversation-preview {
-      font-size: 14px;
-      color: var(--gray-500);
+      margin: 0;
+      color: var(--gray-600);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
+    .conversation-time {
+      color: var(--gray-400);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .conversation-badge {
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: var(--ruc-red);
+      color: var(--white);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-modal {
+      max-width: 560px;
+      height: 72vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .chat-compose {
+      border-top: 1px solid var(--border);
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
     .chat-message {
       display: flex;
       flex-direction: column;
-      max-width: 70%;
+      max-width: 75%;
     }
 
     .chat-message.sent {
@@ -473,28 +523,26 @@
     }
 
     .chat-bubble {
+      border-radius: 14px;
       padding: 10px 14px;
-      border-radius: 16px;
-      font-size: 14px;
-      line-height: 1.4;
+      line-height: 1.5;
       word-break: break-word;
     }
 
     .chat-message.sent .chat-bubble {
       background: var(--ruc-red);
       color: var(--white);
-      border-bottom-right-radius: 4px;
     }
 
     .chat-message.received .chat-bubble {
       background: var(--gray-100);
       color: var(--black);
-      border-bottom-left-radius: 4px;
     }
 
-    .chat-time {
-      font-size: 11px;
+    .chat-time,
+    .empty-chat {
       color: var(--gray-400);
+      font-size: 12px;
       margin-top: 4px;
     }
   </style>

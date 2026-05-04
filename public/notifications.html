@@ -5,49 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>通知 - 人大匿名墙</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
 </head>
 <body>
   <div class="container">
     <div class="main-layout">
       <aside class="sidebar-left">
         <div class="logo-area">
-          <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="25" cy="25" r="24" stroke="#9E1B32" stroke-width="2" fill="none"/>
-            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#9E1B32" font-size="14" font-weight="900" font-family="Arial, sans-serif">RUC</text>
-          </svg>
           <span class="logo-text">人大匿名墙</span>
         </div>
         <nav class="nav-links">
-          <a href="index.html" class="nav-item" id="navHome">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            <span>首页</span>
-          </a>
-          <a href="explore.html" class="nav-item" id="navExplore">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <span>发现</span>
-          </a>
-          <a href="notifications.html" class="nav-item active" id="navNotifications">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span>通知</span>
-            <span class="notification-badge" id="notifBadge" style="display:none">0</span>
-          </a>
-          <a href="messages.html" class="nav-item" id="navMessages">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>私信</span>
-          </a>
-          <a href="profile.html" class="nav-item" id="navProfile">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span>我的发布</span>
-          </a>
-          <a href="settings.html" class="nav-item" id="navSettings">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            <span>设置</span>
-          </a>
-          <a href="admin.html" class="nav-item" id="navAdmin" style="display:none">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>管理后台</span>
-          </a>
+          <a href="index.html" class="nav-item"><span>首页</span></a>
+          <a href="explore.html" class="nav-item"><span>发现</span></a>
+          <a href="notifications.html" class="nav-item active"><span>通知</span></a>
+          <a href="messages.html" class="nav-item"><span>私信</span></a>
+          <a href="profile.html" class="nav-item"><span>我的发布</span></a>
+          <a href="settings.html" class="nav-item"><span>设置</span></a>
+          <a href="admin.html" class="nav-item" id="navAdmin" style="display:none"><span>管理后台</span></a>
         </nav>
         <div class="sidebar-bottom">
           <div class="user-menu" id="userMenu">
@@ -56,7 +29,6 @@
               <div class="user-name" id="userName">匿名用户</div>
               <div class="user-handle" id="userHandle">@anonymous</div>
             </div>
-            <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
           </div>
         </div>
       </aside>
@@ -64,58 +36,17 @@
       <main class="feed-main">
         <header class="feed-header">
           <h1>通知</h1>
-          <button class="btn btn-secondary" id="clearAll" style="padding: 6px 16px; font-size: 13px;">清空全部</button>
+          <button class="btn btn-secondary" id="clearAllBtn">清空全部</button>
         </header>
-
-        <div id="notificationList">
-          <div class="loading-spinner"><div class="spinner"></div></div>
-        </div>
-
-        <div class="load-more" id="loadMoreArea" style="display:none">
-          <button id="loadMoreBtn">加载更多</button>
-        </div>
+        <div id="notificationList"></div>
       </main>
 
       <aside class="sidebar-right">
         <div class="widget">
-          <div class="widget-header">通知说明</div>
+          <div class="widget-header">说明</div>
           <div class="widget-content">
-            <div class="rules-item">
-              <div class="rule-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </div>
-              <div class="rule-text">
-                <div class="rule-title">点赞通知</div>
-                <div class="rule-desc">有人赞了你的消息</div>
-              </div>
-            </div>
-            <div class="rules-item">
-              <div class="rule-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-              </div>
-              <div class="rule-text">
-                <div class="rule-title">评论通知</div>
-                <div class="rule-desc">有人评论了你的消息</div>
-              </div>
-            </div>
-            <div class="rules-item">
-              <div class="rule-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div class="rule-text">
-                <div class="rule-title">系统通知</div>
-                <div class="rule-desc">重要消息和审核通知</div>
-              </div>
-            </div>
+            <p>这里会显示点赞、评论、回复和私信提醒。</p>
           </div>
-        </div>
-
-        <div class="footer-links">
-          <a href="#">使用条款</a>
-          <a href="#">隐私政策</a>
-          <a href="#">联系我们</a>
-          <a href="#">帮助中心</a>
-          <span>© 2024 RUC Confession Wall</span>
         </div>
       </aside>
     </div>
@@ -125,227 +56,153 @@
     <div class="modal" style="max-width:300px;padding:8px">
       <div class="modal-header" style="padding:8px 12px">
         <h2 style="font-size:15px">账号</h2>
-        <button class="modal-close" id="closeUserMenuModal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+        <button class="modal-close" id="closeUserMenuModal">×</button>
       </div>
       <div class="modal-body" style="padding:8px">
-        <button class="btn btn-secondary" id="logoutBtn" style="width:100%;text-align:left;padding:12px 16px;border-radius:8px">
-          退出登录
-        </button>
+        <button class="btn btn-secondary" id="logoutBtn" style="width:100%">退出登录</button>
       </div>
     </div>
   </div>
 
   <div class="toast-container" id="toastContainer"></div>
-  <button class="scroll-to-top" id="scrollToTop">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-  </button>
 
   <script type="module">
-    import apiClient from './js/api/client.js';
+    import apiClient from './js/api/client.js'
 
-    let currentPage = 1;
-    let isLoading = false;
-
-    const notificationList = document.getElementById('notificationList');
-    const loadMoreArea = document.getElementById('loadMoreArea');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    const clearAllBtn = document.getElementById('clearAll');
-    const userMenuModal = document.getElementById('userMenuModal');
-    const userMenu = document.getElementById('userMenu');
-    const toastContainer = document.getElementById('toastContainer');
-    const scrollToTop = document.getElementById('scrollToTop');
+    const notificationList = document.getElementById('notificationList')
+    const clearAllBtn = document.getElementById('clearAllBtn')
+    const toastContainer = document.getElementById('toastContainer')
+    const userMenu = document.getElementById('userMenu')
+    const userMenuModal = document.getElementById('userMenuModal')
 
     if (!apiClient.isLoggedIn()) {
-      window.location.href = 'login.html';
+      window.location.href = 'login.html'
     }
 
-    if (apiClient.getUser()) {
-      const user = apiClient.getUser();
-      document.getElementById('userName').textContent = user.username || '匿名用户';
-      document.getElementById('userHandle').textContent = '@' + (user.username || 'anonymous');
-      document.getElementById('userAvatar').textContent = (user.username || 'A')[0].toUpperCase();
+    const currentUser = apiClient.getUser()
+    if (currentUser) {
+      document.getElementById('userName').textContent = currentUser.username || '匿名用户'
+      document.getElementById('userHandle').textContent = `@${currentUser.username || 'anonymous'}`
+      document.getElementById('userAvatar').textContent = (currentUser.username || 'A')[0].toUpperCase()
 
-      if (user && user.role === 'admin') {
-        const adminNav = document.getElementById('navAdmin');
-        if (adminNav) adminNav.style.display = '';
+      if (currentUser.role === 'admin') {
+        document.getElementById('navAdmin').style.display = ''
       }
     }
 
     function showToast(message, type = 'default') {
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.textContent = message;
-      toastContainer.appendChild(toast);
-      setTimeout(() => toast.remove(), 3000);
+      const toast = document.createElement('div')
+      toast.className = `toast ${type}`
+      toast.textContent = message
+      toastContainer.appendChild(toast)
+      setTimeout(() => toast.remove(), 3000)
+    }
+
+    function escapeHtml(text = '') {
+      const div = document.createElement('div')
+      div.textContent = text
+      return div.innerHTML
     }
 
     function formatTime(dateStr) {
-      const date = new Date(dateStr);
-      const now = new Date();
-      const diff = (now - date) / 1000;
-      if (diff < 60) return '刚刚';
-      if (diff < 3600) return Math.floor(diff / 60) + '分钟前';
-      if (diff < 86400) return Math.floor(diff / 3600) + '小时前';
-      if (diff < 604800) return Math.floor(diff / 86400) + '天前';
-      return date.toLocaleDateString('zh-CN');
+      const date = new Date(dateStr.replace(' ', 'T'))
+      const diffSeconds = Math.floor((Date.now() - date.getTime()) / 1000)
+
+      if (diffSeconds < 60) return '刚刚'
+      if (diffSeconds < 3600) return `${Math.floor(diffSeconds / 60)} 分钟前`
+      if (diffSeconds < 86400) return `${Math.floor(diffSeconds / 3600)} 小时前`
+      if (diffSeconds < 604800) return `${Math.floor(diffSeconds / 86400)} 天前`
+      return date.toLocaleDateString('zh-CN')
     }
 
-    function getNotificationIcon(type) {
-      const icons = {
-        like: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
-        comment: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>',
-        reply: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>',
-        system: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>'
-      };
-      return icons[type] || icons.system;
-    }
-
-    function getNotificationColor(type) {
-      const colors = {
-        like: 'var(--red)',
-        comment: 'var(--blue)',
-        reply: 'var(--blue)',
-        system: 'var(--ruc-red)'
-      };
-      return colors[type] || 'var(--gray-500)';
-    }
-
-    function renderNotification(notif) {
-      const icon = getNotificationIcon(notif.type);
-      const color = getNotificationColor(notif.type);
-
-      return `
-        <div class="notification-item ${notif.is_read ? '' : 'unread'}" data-id="${notif.id}">
-          <div class="notification-icon" style="color: ${color}">${icon}</div>
-          <div class="notification-content">
-            <div class="notification-title">${escapeHtml(notif.title)}</div>
-            <div class="notification-text">${escapeHtml(notif.content)}</div>
-            <div class="notification-time">${formatTime(notif.created_at)}</div>
-          </div>
-        </div>
-      `;
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    async function loadNotifications(page = 1, append = false) {
-      if (isLoading) return;
-      isLoading = true;
-
-      if (!append) {
-        notificationList.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
-      }
-
-      try {
-        const result = await apiClient.getNotifications({ page, limit: 20 });
-
-        if (result.code === 200 && result.data) {
-          const { notifications } = result.data;
-
-          if (!append) {
-            notificationList.innerHTML = '';
-          }
-
-          if (notifications && notifications.length > 0) {
-            notificationList.innerHTML += notifications.map(renderNotification).join('');
-            loadMoreArea.style.display = notifications.length === 20 ? 'block' : 'none';
-            attachNotificationListeners();
-          } else if (!append) {
-            notificationList.innerHTML = `
-              <div class="empty-state">
-                <div class="empty-icon">🔔</div>
-                <h3>暂无通知</h3>
-                <p>还没有收到任何通知</p>
-              </div>
-            `;
-            loadMoreArea.style.display = 'none';
-          }
-        }
-      } catch (error) {
-        showToast('网络错误，请稍后重试', 'error');
-      } finally {
-        isLoading = false;
-      }
-    }
-
-    function attachNotificationListeners() {
-      document.querySelectorAll('.notification-item').forEach(item => {
-        item.addEventListener('click', async () => {
-          const id = item.dataset.id;
-          if (item.classList.contains('unread')) {
-            try {
-              await apiClient.markNotificationRead(id);
-              item.classList.remove('unread');
-            } catch (e) {
-              // ignore
-            }
-          }
-        });
-      });
-    }
-
-    loadMoreBtn.addEventListener('click', () => {
-      currentPage++;
-      loadNotifications(currentPage, true);
-    });
-
-    clearAllBtn.addEventListener('click', async () => {
-      if (!confirm('确定要清空所有通知吗？')) return;
-      try {
-        await apiClient.clearNotifications();
-        showToast('通知已清空', 'success');
+    function renderNotifications(notifications) {
+      if (!notifications.length) {
         notificationList.innerHTML = `
           <div class="empty-state">
-            <div class="empty-icon">🔔</div>
             <h3>暂无通知</h3>
-            <p>还没有收到任何通知</p>
+            <p>有人点赞、评论或发私信时会显示在这里。</p>
           </div>
-        `;
-        loadMoreArea.style.display = 'none';
-      } catch {
-        showToast('清空失败，请稍后重试', 'error');
+        `
+        return
       }
-    });
+
+      notificationList.innerHTML = notifications.map((item) => `
+        <article class="notification-item ${item.is_read ? '' : 'unread'}" data-id="${item.id}">
+          <div class="notification-row">
+            <strong>${escapeHtml(item.title)}</strong>
+            <span class="notification-time">${formatTime(item.created_at)}</span>
+          </div>
+          <p class="notification-text">${escapeHtml(item.content || '')}</p>
+        </article>
+      `).join('')
+
+      document.querySelectorAll('.notification-item.unread').forEach((item) => {
+        item.addEventListener('click', async () => {
+          const result = await apiClient.markNotificationRead(item.dataset.id)
+          if (result.code === 200) {
+            item.classList.remove('unread')
+          }
+        })
+      })
+    }
+
+    async function loadNotifications() {
+      notificationList.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>'
+
+      try {
+        const result = await apiClient.getNotifications({ page: 1, limit: 50 })
+        if (result.code === 200 && result.data) {
+          renderNotifications(result.data.notifications || [])
+        } else {
+          showToast(result.message || '加载通知失败', 'error')
+        }
+      } catch (error) {
+        showToast('网络错误，请稍后重试', 'error')
+      }
+    }
+
+    clearAllBtn.addEventListener('click', async () => {
+      if (!confirm('确定要清空所有通知吗？')) {
+        return
+      }
+
+      try {
+        const result = await apiClient.clearNotifications()
+        if (result.code === 200) {
+          renderNotifications([])
+          showToast('通知已清空', 'success')
+        } else {
+          showToast(result.message || '清空失败', 'error')
+        }
+      } catch (error) {
+        showToast('网络错误，请稍后重试', 'error')
+      }
+    })
 
     userMenu.addEventListener('click', () => {
-      userMenuModal.classList.add('active');
-    });
+      userMenuModal.classList.add('active')
+    })
 
     document.getElementById('closeUserMenuModal').addEventListener('click', () => {
-      userMenuModal.classList.remove('active');
-    });
+      userMenuModal.classList.remove('active')
+    })
 
-    userMenuModal.addEventListener('click', (e) => {
-      if (e.target === userMenuModal) userMenuModal.classList.remove('active');
-    });
+    userMenuModal.addEventListener('click', (event) => {
+      if (event.target === userMenuModal) {
+        userMenuModal.classList.remove('active')
+      }
+    })
 
     document.getElementById('logoutBtn').addEventListener('click', async () => {
-      await apiClient.logout();
-      showToast('已退出登录', 'success');
-      setTimeout(() => { window.location.href = 'login.html'; }, 800);
-    });
+      await apiClient.logout()
+      window.location.href = 'login.html'
+    })
 
-    window.addEventListener('scroll', () => {
-      scrollToTop.classList.toggle('visible', window.scrollY > 300);
-    });
-
-    scrollToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    loadNotifications(1, false);
+    loadNotifications()
   </script>
 
   <style>
     .notification-item {
-      display: flex;
-      gap: 12px;
       padding: 16px;
       border-bottom: 1px solid var(--border);
       cursor: pointer;
@@ -357,54 +214,27 @@
     }
 
     .notification-item.unread {
-      background: rgba(158, 27, 50, 0.03);
+      background: rgba(158, 27, 50, 0.04);
+      border-left: 3px solid var(--ruc-red);
     }
 
-    .notification-item.unread::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--ruc-red);
-    }
-
-    .notification-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gray-100);
+    .notification-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .notification-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .notification-title {
-      font-weight: 700;
-      font-size: 15px;
-      margin-bottom: 4px;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
     }
 
     .notification-text {
-      font-size: 14px;
+      margin: 0;
       color: var(--gray-600);
-      margin-bottom: 4px;
+      line-height: 1.5;
     }
 
     .notification-time {
-      font-size: 12px;
       color: var(--gray-400);
-    }
-
-    .notification-item {
-      position: relative;
+      font-size: 12px;
+      white-space: nowrap;
     }
   </style>
 </body>

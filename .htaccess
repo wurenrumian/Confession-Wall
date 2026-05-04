@@ -1,5 +1,6 @@
 RewriteEngine On
 RewriteBase /Confession-Wall/
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
 # Let real files and directories pass through unchanged.
 RewriteCond %{REQUEST_FILENAME} -f [OR]

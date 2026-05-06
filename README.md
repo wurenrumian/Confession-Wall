@@ -94,6 +94,8 @@ Confession-Wall/
 D:\XAMPP\htdocs\Confession-Wall
 ```
 
+注意GitHub下载默认文件名是 `Confession-Wall-Main `，请注意修改文件名否则导致Apache映射错误
+
 #### 2. 启动服务
 
 在 XAMPP Control Panel 中启动：

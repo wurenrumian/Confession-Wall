@@ -6,17 +6,17 @@
 return [
     // 数据库配置 (MySQL)
     'database' => [
-        'host' => '127.0.0.1',
-        'port' => 3306,
-        'dbname' => 'confession_wall',
-        'username' => 'root',
-        'password' => '',
+        'host' => getenv('DB_HOST') ?: '127.0.0.1',
+        'port' => getenv('DB_PORT') ?: 3306,
+        'dbname' => getenv('DB_NAME') ?: 'confession_wall',
+        'username' => getenv('DB_USER') ?: 'root',
+        'password' => getenv('DB_PASS') ?: '',
         'charset' => 'utf8mb4',
     ],
     
     // JWT 配置
     'jwt' => [
-        'secret' => 'your-secret-key-change-in-production',
+        'secret' => getenv('JWT_SECRET') ?: 'your-secret-key-change-in-production',
         'expiration' => 86400,        // Token 有效期: 24小时
         'refresh_expiration' => 604800, // Refresh Token 有效期: 7天
     ],

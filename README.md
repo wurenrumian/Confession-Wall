@@ -9,9 +9,10 @@
 ## 技术栈
 
 - **前端**: HTML5 + CSS3 + JavaScript (ES6+ 原生实现，无框架依赖)
-- **后端**: PHP + SQLite
+- **后端**: PHP + MySQL
 - **架构**: 前后端分离，通过 RESTful API 通信
 - **认证**: JWT (JSON Web Token)
+- **部署**: 支持 XAMPP 和 Docker 两种方式
 
 ## 目录结构
 
@@ -82,7 +83,76 @@ Confession-Wall/
 
 ## 快速开始
 
-### 推荐方式：使用 XAMPP + Apache + MySQL（团队本地开发）
+### 方式一：使用 Docker（推荐）
+
+整个后端环境（PHP + Apache + MySQL）一键启动，无需手动安装任何依赖。
+
+#### 前提条件
+
+- 安装 [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- 如在中国大陆，需配置 Docker 镜像加速器或代理
+
+#### 启动
+
+```bash
+# 在项目根目录执行
+docker-compose up -d
+```
+
+首次启动会自动：
+1. 构建 PHP 8.2 + Apache 镜像（已启用 mod_rewrite 和 pdo_mysql）
+2. 启动 MySQL 8.0 容器并自动执行 `backend/database.sql` 初始化数据库
+3. 创建默认用户（admin / testuser）
+
+#### 访问
+
+| 服务     | 地址                          | 说明                           |
+| -------- | ----------------------------- | ------------------------------ |
+| 前端页面 | `http://localhost:18080`      | 静态文件根目录 `public/`       |
+| API      | `http://localhost:18080/api`  | PHP 后端 RESTful API           |
+| MySQL    | `localhost:3307`              | 数据库 `confession_wall`       |
+
+> 端口 18080 和 3307 可在 `docker-compose.yml` 中修改。
+> MySQL 默认密码为 `rootpass`，可在 `docker-compose.yml` 的 `MYSQL_ROOT_PASSWORD` 环境变量中修改。
+
+#### 环境变量
+
+通过 `docker-compose.yml` 的 `environment` 配置：
+
+| 变量        | 默认值                                      | 说明               |
+| ----------- | ------------------------------------------- | ------------------ |
+| `DB_HOST`   | `db`                                        | MySQL 容器主机名   |
+| `DB_PORT`   | `3306`                                      | MySQL 端口         |
+| `DB_NAME`   | `confession_wall`                           | 数据库名           |
+| `DB_USER`   | `root`                                      | 数据库用户         |
+| `DB_PASS`   | `rootpass`                                  | 数据库密码         |
+| `JWT_SECRET` | `change-this-to-a-random-secret-in-production` | JWT 签名密钥       |
+
+#### 其他命令
+
+```bash
+# 查看日志
+docker-compose logs -f
+
+# 停止容器
+docker-compose down
+
+# 停止并删除数据卷
+docker-compose down -v
+```
+
+#### 代理配置（中国大陆用户）
+
+如遇到 Docker Hub 连接失败，在启动前设置 HTTP 代理：
+
+```powershell
+# PowerShell
+$env:HTTP_PROXY="http://127.0.0.1:7890"
+$env:HTTPS_PROXY="http://127.0.0.1:7890"
+docker-compose up -d
+```
+
+### 方式二：使用 XAMPP + Apache + MySQL（团队本地开发）
 
 这是当前仓库最直接的本地运行方式，适合 Windows + XAMPP 环境。
 
@@ -142,7 +212,46 @@ XAMPP 默认通常已启用 `mod_rewrite`。如果 API 返回 404，请优先检
 浏览器打开：
 
 ```text
-http://localhost/Confession-Wall/
+Confession-Wall/
+├── public/                 # 前端静态文件
+│   ├── index.html          # 主页/时间线
+│   ├── login.html           # 登录页
+│   ├── register.html        # 注册页
+│   ├── explore.html         # 发现页
+│   ├── notifications.html   # 通知页
+│   ├── messages.html        # 私信页
+│   ├── profile.html         # 个人主页
+│   ├── settings.html        # 设置页
+│   ├── css/
+│   │   └── style.css        # 全部样式
+│   ├── js/
+│   │   └── api/
+│   │       └── client.js    # API 客户端
+│   └── assets/
+│       └── ruc-logo.svg     # RUC 品牌标识
+├── backend/                 # PHP 后端
+│   ├── index.php            # 入口文件
+│   ├── config.php           # 配置文件
+│   ├── database.php         # 数据库类
+│   ├── database.sql         # 数据库初始化
+│   ├── routes.php           # 路由处理
+│   ├── controllers/         # 控制器
+│   │   ├── auth.php         # 认证
+│   │   ├── message.php      # 消息
+│   │   ├── comment.php      # 评论
+│   │   ├── admin.php        # 管理员
+│   │   ├── notification.php # 通知
+│   │   ├── conversation.php  # 私信
+│   │   └── setting.php      # 设置
+│   └── test-api.php         # API 测试脚本
+├── docker/                  # Docker 部署配置
+│   └── 000-default.conf     # Apache 虚拟主机配置
+├── Dockerfile               # PHP + Apache 镜像构建
+├── docker-compose.yml       # 编排 PHP + MySQL 服务
+├── .dockerignore            # Docker 构建排除
+├── docs/                    # API 文档
+├── AGENTS.md               # Agent 规范
+└── README.md
 ```
 
 也可以直接访问登录页：
@@ -157,7 +266,7 @@ http://localhost/Confession-Wall/public/login.html
 http://localhost/Confession-Wall/api
 ```
 
-### 方式一：使用 PHP 内置服务器（开发环境）
+### 方式二：使用 PHP 内置服务器（开发环境）
 
 需要启动**两个**终端：
 
@@ -188,7 +297,7 @@ php -S localhost:8080 -t public
 
 访问 `http://localhost:8080` 查看前端页面。
 
-### 方式二：使用 Nginx/Apache（自定义部署）
+### 方式三：使用 Nginx/Apache（自定义部署）
 
 如果不是使用 XAMPP 默认的 `http://localhost/Confession-Wall/` 目录方式，而是自行配置虚拟主机或 Nginx，可参考以下方式部署。
 
@@ -280,30 +389,18 @@ php backend/test-api.php
 
 ### 数据库配置
 
-编辑 `backend/config.php` 修改配置：
+`backend/config.php` 中的配置项支持通过环境变量覆盖，适用于 Docker 部署：
 
-```php
-return [
-    'database' => [
-        'host' => '127.0.0.1',
-        'port' => 3306,
-        'dbname' => 'confession_wall',
-        'username' => 'root',
-        'password' => '',
-        'charset' => 'utf8mb4',
-    ],
-    'jwt' => [
-        'secret' => 'your-secret-key',
-        'expiration' => 86400,
-        'refresh_expiration' => 604800,
-    ],
-    'moderation' => [
-        'require_approval' => false,
-        'max_content_length' => 500,
-        'max_comment_length' => 200,
-    ],
-];
-```
+| 配置项            | 环境变量       | 默认值                                    | 说明             |
+| ----------------- | -------------- | ----------------------------------------- | ---------------- |
+| 数据库主机        | `DB_HOST`      | `127.0.0.1`                               |                  |
+| 数据库端口        | `DB_PORT`      | `3306`                                    |                  |
+| 数据库名          | `DB_NAME`      | `confession_wall`                         |                  |
+| 数据库用户        | `DB_USER`      | `root`                                    |                  |
+| 数据库密码        | `DB_PASS`      | (空)                                      |                  |
+| JWT 密钥          | `JWT_SECRET`   | `your-secret-key-change-in-production`    | 生产环境务必修改 |
+
+直接编辑 `backend/config.php` 也可修改这些配置。非 Docker 环境下环境变量不生效，仍使用文件中的默认值。
 
 ## License
 

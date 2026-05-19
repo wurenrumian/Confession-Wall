@@ -4,30 +4,5 @@ services:
     container_name: confession-wall-app
     ports:
       - "18080:80"
-    depends_on:
-      db:
-        condition: service_healthy
-    volumes:
-      - .:/var/www/html
-    restart: unless-stopped
-
-  db:
-    image: mysql:8.0
-    container_name: confession-wall-db
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpass
-      - MYSQL_DATABASE=confession_wall
-    ports:
       - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-      - ./backend/database.sql:/docker-entrypoint-initdb.d/init.sql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
     restart: unless-stopped
-
-volumes:
-  mysql_data:

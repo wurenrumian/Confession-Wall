@@ -10,4 +10,11 @@ COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 RUN chown -R www-data:www-data /var/www/html
 
+ENV DB_HOST=db \
+    DB_PORT=3306 \
+    DB_NAME=confession_wall \
+    DB_USER=root \
+    DB_PASS=rootpass \
+    JWT_SECRET=change-this-to-a-random-secret-in-production
+
 EXPOSE 80
